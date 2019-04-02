@@ -45,7 +45,7 @@ def compare_images(img_data1, img_data2):
         return False
 
 
-def find_image_among_data(scrnshot):
+def recognize_number(scrnshot):
     result = False
     for number in range(0, 11):
         if get_image_data(scrnshot) == NUMBERS_LIST[number]:
@@ -54,7 +54,7 @@ def find_image_among_data(scrnshot):
 
 
 screen_now = pyautogui.screenshot(region=(465, 51, 474, 73))
-print(find_image_among_data(screen_now))
+print(recognize_number(screen_now))
 
 # img_data1 = get_image_data(screen_now)
 # img_data2 = THREE_IMG_DATA
