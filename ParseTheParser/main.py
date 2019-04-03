@@ -1,5 +1,5 @@
 from ParseTheParser import autoparse
-
+import pyautogui
 
 def ask_confirm():
     confirm = input('\n\n!!! REMEMBER !!!\n\n'
@@ -17,4 +17,7 @@ def ask_confirm():
 
 
 ask_confirm()
-autoparse()
+try:
+    autoparse()
+except pyautogui.FailSafeException:
+    print("FAILSAFE-ESCAPED.")
