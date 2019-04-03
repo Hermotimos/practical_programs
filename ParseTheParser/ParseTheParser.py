@@ -8,17 +8,16 @@ pyautogui.FAILSAFE = True               # possible escape by moving cursor to up
 
 
 def ask_confirm():
-    confirm = input('!!! Before you start !!!\n'
-                    '- full screen\n\n'
-                    '1. Choose type of sentence to browse.\n'
-                    '2. Set end date\n'
-                    '3. Set "without thesis" and "with justification" fields.\n'
-                    '4. Set number of pages to 1\n\n'
-                    'QUIT: when the program starts, rapidly move the cursor to the upper left corner of the screen.\n'
-                    'CONFIRM: "ok" + ENTER ===> you will have 5 secs to go to the Parser window.\n')
+    confirm = input('\n\n!!! REMEMBER !!!\n\n'
+                    '0. FULL SCREEN\n'
+                    '1. TYPE OF SENTENCES TO BROWSE.\n'
+                    '2. END DATE\n'
+                    '3. SET "without thesis" AND "with justification" fields.\n'
+                    '4. NUMBER OF PAGES = 1\n\n'
+                    'CONFIRM: Type "ok" + ENTER ===> you will have 5 secs to switch to the Parser window.\n')
     try:
-        if confirm == 'ok':
-            pass
+        assert confirm == 'ok'
+        print('TO ESCAPE: while the cursor is moving, rapidly move it to the upper left corner of the screen.\n')
     except Exception:
         return ask_confirm()
 
@@ -57,3 +56,6 @@ while True:
     pyautogui.moveTo(1140, 825, duration=1)
     pyautogui.click()
 
+
+
+# todo: wrap the whole program in try - except to catch the error by ESCAPE MOVEMENT
