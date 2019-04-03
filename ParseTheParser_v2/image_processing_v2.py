@@ -43,7 +43,7 @@ def recognize_number(scrnshot):
 
 
 def await_image(image_file):
-    isfound = pyautogui.locateOnScreen(image_file, minSearchTime=60)  # waits 60 secs for image; todo: f to click again + wait again
+    isfound = pyautogui.locateOnScreen(image_file, minSearchTime=60)  # waits 60 secs for image;
     if isfound:
         return True
     else:
@@ -52,7 +52,7 @@ def await_image(image_file):
 # print(await_image('znaleziono1.png'))
 
 
-def go_to_image(image):
+def go_to_image(image):           # TODO generates errors when no such image: may be used only after some kind of check
     location = pyautogui.locateOnScreen(image)
     center = pyautogui.center(location)
     pyautogui.moveTo(center[0], center[1], duration=0.5)

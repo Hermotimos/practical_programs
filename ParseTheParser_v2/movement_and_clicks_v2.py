@@ -64,7 +64,8 @@ def click_back_n_times():
 
 
 def check_site():
-    go_to_image('blueline.png')
+
+    go_to_image('blueline.png')                 # TODO gotoimage causes errors when no such image: add check before !!!
     pyautogui.scroll(7000)
     is_right_site = await_image('lista.png')
     if is_right_site:
