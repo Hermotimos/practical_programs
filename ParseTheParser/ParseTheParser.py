@@ -46,7 +46,7 @@ def click_back_n_times():
 
 def check_site():
     pyautogui.moveTo(1785, 500, duration=1)
-    pyautogui.scroll(3000)
+    pyautogui.scroll(7000)
     is_right_site = await_image('found.png')
     if is_right_site:
         pass
@@ -57,9 +57,10 @@ def check_site():
 
 
 def click_next():
-    pyautogui.moveTo(1785, 500, duration=0.5)
-    pyautogui.scroll(-3000)
-    pyautogui.moveTo(1169, 825, duration=0.5)
+    pyautogui.scroll(-7000)
+    location = pyautogui.locateOnScreen('nextButton.png')
+    center = pyautogui.center(location)
+    pyautogui.moveTo(center[0], center[1], duration=0.5)
     pyautogui.click()
 
 
