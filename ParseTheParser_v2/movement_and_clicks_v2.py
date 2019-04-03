@@ -23,6 +23,7 @@ def click_start():
         go_to_image('start_before.png')
         pyautogui.click()
     else:
+        click_search()
         click_start()
         # possible infinite recursion is a safety measure in case of site malfunction
 
@@ -63,23 +64,16 @@ def click_next():
     pyautogui.click()
 
 
-def autoparse():
+def autoparse(how_many_pages):
     time.sleep(5)
     scrollbar_up()
     click_search()
 
-    while True:
+    while how_many_pages > 0:
         click_start()
         click_search_engine()
         click_back_n_times()
         check_site()
         click_next()
-
-
-# todo: wrap the whole program in try - except to catch the error by ESCAPE MOVEMENT
-# todo find out about imports - why red when files are in the same directory?
-
-
-
-
+        how_many_pages -= 1
 

@@ -3,22 +3,25 @@ import pyautogui
 
 
 def ask_confirm():
-    confirm = input('\n\n!!! REMEMBER !!!\n\n'
-                    '0. FULL SCREEN\n'
+    confirm = input('\n\n!!! PREPARE YOUR PARSER !!!\n\n'
                     '1. TYPE OF SENTENCES TO BROWSE.\n'
                     '2. END DATE\n'
                     '3. SET "without thesis" AND "with justification" fields.\n'
                     '4. NUMBER OF PAGES = 1\n\n'
-                    'CONFIRM: Type "ok" + ENTER ===> you will have 5 secs to switch to the Parser window.\n')
+                    'Enter number of pages to browse or leave empty for 10000:\n'
+                    'CONFIRM: ENTER ===> you will then have 5 secs to switch to the Parser window.\n')
+    if confirm == '':
+        confirm = 10000
     try:
-        assert confirm == 'ok'
-        print('TO ESCAPE: while the cursor is moving, rapidly move it to the upper left corner of the screen.\n')
+        int(confirm)
+        assert confirm > 0
+        return confirm
     except Exception:
         return ask_confirm()
 
 
-ask_confirm()
+pages = ask_confirm()
 try:
-    autoparse()
+    autoparse(pages)
 except pyautogui.FailSafeException:
     print("FAILSAFE-ESCAPED.")
