@@ -1,5 +1,6 @@
 import pyautogui
-from data import NUMBERS_0_10
+import time
+from data import NUMBERS_0_10, BLANK_TENTH_POS
 
 
 # def get_image_dimensions(image):                    # there's a problem with encoding
@@ -31,23 +32,25 @@ def get_image_data(image_with_size=()):
 # print(get_image_data(screenshot))
 # print(get_image_data(screenshot) == NUMBERS_0_10[0])
 
+# screenshot = screenshot_1920x1080(553, 311, 628, 318)
+# print(screenshot)
+# print(get_image_data(screenshot))
+
 
 def recognize_number(scrnshot):
-    recognized_number = False
+    recognized_num = False
     for number in range(0, 11):
         if get_image_data(scrnshot) == NUMBERS_0_10[number]:
-            recognized_number = number
-    return recognized_number
+            recognized_num = number
+    return recognized_num
 
-# screen_now = pyautogui.screenshot(region=(465, 51, 474, 73))
+# screen_now = screenshot_1920x1080(465, 51, 474, 73)
 # print(recognize_number(screen_now))
 
 
 def compare_images(img_data1, img_data2):
     if img_data1 == img_data2:
         return True
-
-
 
 
 def await_image(image_file):
@@ -59,8 +62,6 @@ def await_image(image_file):
 
 # print(await_image('nextButton.png'))
 
-
-# def await_not_blank():
 
 
 
