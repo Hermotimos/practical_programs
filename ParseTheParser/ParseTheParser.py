@@ -18,7 +18,7 @@ def click_search():
 
 
 def click_start():
-    isstarted = await_image('found.png')
+    isstarted = await_image('znaleziono2.png')
     if isstarted:
         pyautogui.moveTo(341, 75, duration=0.5)
         pyautogui.click()
@@ -28,7 +28,7 @@ def click_start():
 
 
 def click_search_engine():
-    isdone = await_image('start_grey_after_tenth.png')
+    isdone = await_image('start_grey.png')
     if isdone:
         pyautogui.moveTo(48, 116, duration=0.5)
         pyautogui.click()
@@ -47,7 +47,7 @@ def click_back_n_times():
 def check_site():
     pyautogui.moveTo(1785, 500, duration=1)
     pyautogui.scroll(7000)
-    is_right_site = await_image('found.png')
+    is_right_site = await_image('znaleziono2.png')
     if is_right_site:
         pass
     else:
@@ -58,7 +58,7 @@ def check_site():
 
 def click_next():
     pyautogui.scroll(-7000)
-    location = pyautogui.locateOnScreen('nextButton.png')
+    location = pyautogui.locateOnScreen('nastepna.png')
     center = pyautogui.center(location)
     pyautogui.moveTo(center[0], center[1], duration=0.5)
     pyautogui.click()

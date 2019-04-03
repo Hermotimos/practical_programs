@@ -53,7 +53,7 @@ def await_image(image_file):
     else:
         return False
 
-# print(await_image('nextButton.png'))
+# print(await_image('znaleziono1.png'))
 
 
 
