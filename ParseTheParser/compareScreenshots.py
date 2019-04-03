@@ -1,13 +1,6 @@
 import pyautogui
 import time
-from data import NUMBERS_0_10, BLANK_TENTH_POS
-
-
-# def get_image_dimensions(image):                    # there's a problem with encoding
-#     from PIL import Image
-#     width, heigth = Image.open(open(image)).size
-#     return width, heigth
-# print(get_image_dimensions('example.png'))
+from data import NUMBERS_0_10
 
 
 def screenshot_1920x1080(up_from_left=0, up_from_top=0, d_from_left=1920, d_from_top=1080):
