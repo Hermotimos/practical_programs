@@ -1,4 +1,4 @@
-from ParseTheParser import autoparse
+from movement_and_clicks import autoparse
 import pyautogui
 
 

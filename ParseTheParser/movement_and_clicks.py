@@ -1,6 +1,6 @@
 import pyautogui
 import time
-from compareScreenshots import recognize_number, await_image, screenshot_1920x1080
+from image_processing import recognize_number, await_image, screenshot_1920x1080
 
 
 pyautogui.PAUSE = 0.1                   # sets pause between function calls to n secs
