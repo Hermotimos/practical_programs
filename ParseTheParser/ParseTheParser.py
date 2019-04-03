@@ -17,12 +17,13 @@ def autoparse():
     pyautogui.moveTo(1185, 813, duration=1)
     pyautogui.click()
 
-
     while True:
         # click START
-        await_image('found.png')
-        pyautogui.moveTo(341, 75, duration=1)
-        pyautogui.click()
+        time.sleep(2)
+        isfound = await_image('found.png')
+        if isfound:
+            pyautogui.moveTo(341, 75, duration=2)
+            pyautogui.click()
 
 
         # click SEARCH ENGINE
