@@ -1,10 +1,27 @@
 import pyautogui
-import time
+import random
 from image_processing_v2 import recognize_number, await_image, get_screenshot_with_size, go_to_image
 
 
 pyautogui.PAUSE = 0.1                   # sets pause between function calls to n secs
 pyautogui.FAILSAFE = True               # possible escape by moving cursor to upper left corner of screen
+
+
+def autoparse(how_many_pages):
+    scrollbar_up()
+    click_search()
+
+    while how_many_pages > 0:
+        click_start()
+        click_search_engine()
+        click_back_n_times()
+        check_site()
+        click_next()
+        how_many_pages -= 1
+
+    last_done = pyautogui.screenshot()
+    rand = random.random()
+    last_done.save('C:\\Users\\Lukasz\\Desktop\\recent{}.jpg'.format(rand))
 
 
 def scrollbar_up():
@@ -64,16 +81,5 @@ def click_next():
     pyautogui.click()
 
 
-def autoparse(how_many_pages):
-    time.sleep(5)
-    scrollbar_up()
-    click_search()
 
-    while how_many_pages > 0:
-        click_start()
-        click_search_engine()
-        click_back_n_times()
-        check_site()
-        click_next()
-        how_many_pages -= 1
 

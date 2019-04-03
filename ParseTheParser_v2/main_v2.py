@@ -1,5 +1,6 @@
 from movement_and_clicks_v2 import autoparse
 import pyautogui
+import time
 
 
 def ask_confirm():
@@ -13,14 +14,16 @@ def ask_confirm():
     if confirm == '':
         confirm = 10000
     try:
-        int(confirm)
+        confirm = int(confirm)
         assert confirm > 0
         return confirm
-    except Exception:
+    except Exception as e:
+        print(e)
         return ask_confirm()
 
 
 pages = ask_confirm()
+time.sleep(5)
 try:
     autoparse(pages)
 except pyautogui.FailSafeException:
