@@ -1,10 +1,5 @@
+
 import pyautogui
-import time
-from compareScreenshots import recognize_number
-
-
-pyautogui.PAUSE = 0.5                   # sets pause between function calls to n secs
-pyautogui.FAILSAFE = True               # possible escape by moving cursor to upper left corner of screen
 
 
 def ask_confirm():
@@ -22,40 +17,14 @@ def ask_confirm():
         return ask_confirm()
 
 
-# time given to switch windows after program start + set scroll bar to uppmost position
-ask_confirm()
-time.sleep(5)
-pyautogui.moveTo(1906, 193, duration=0)
-pyautogui.click()
+def await_image(image_file):
+    isfound = pyautogui.locateOnScreen(image_file, minSearchTime=60)  # waits 60 secs for image; todo: f to click again + wait again
+    if isfound:
+        return True
+    else:
+        return False
 
-# SZUKAJ
-pyautogui.moveTo(1185, 813, duration=1)
-pyautogui.click()
-
-
-while True:
-    # START
-    pyautogui.moveTo(341, 75, duration=5)
-    pyautogui.click()
-    time.sleep(20)
-
-    # Wyszukiwarka
-    pyautogui.moveTo(48, 116, duration=1)
-    pyautogui.click()
-
-    # BACK
-    pyautogui.moveTo(1785, 142, duration=1)
-    screen = pyautogui.screenshot(region=(465, 51, 474, 73))     # screenshot of 'Nowe' value
-    cnt = recognize_number(screen)
-    backclicks = cnt + 1
-    pyautogui.click(clicks=backclicks, interval=0.5)
-
-    # scrolldown and click next
-    pyautogui.moveTo(1785, 500, duration=2)
-    pyautogui.scroll(-3000)
-    pyautogui.moveTo(1140, 825, duration=1)
-    pyautogui.click()
+# print(await_image('nextButton.png'))
 
 
-
-# todo: wrap the whole program in try - except to catch the error by ESCAPE MOVEMENT
+def await_not_blank():
