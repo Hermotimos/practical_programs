@@ -1,6 +1,7 @@
 from ParseTheParser import autoparse
 import pyautogui
 
+
 def ask_confirm():
     confirm = input('\n\n!!! REMEMBER !!!\n\n'
                     '0. FULL SCREEN\n'
