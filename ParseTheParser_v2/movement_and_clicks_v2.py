@@ -38,8 +38,9 @@ def click_search_engine():
 
 
 def click_back_n_times():
-    screen = get_screenshot_with_size(465, 51, 474, 73)     # screenshot of 'Nowe' value
-    n = recognize_number(screen) + 1                        # adding one for basal 1 back click
+    """ Checks number at specific location (n); adds 1 due to feature's design; goes-back n+1 times"""
+    screen = get_screenshot_with_size(465, 51, 474, 73)
+    n = recognize_number(screen) + 1
     go_to_image('back.png')
     pyautogui.click(clicks=n, interval=0.5)
 
@@ -63,7 +64,7 @@ def click_next():
 
 
 def autoparse():
-    time.sleep(5)                                           # time given to switch windows after program start
+    time.sleep(5)
     scrollbar_up()
     click_search()
 
