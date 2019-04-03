@@ -1,8 +1,16 @@
 import pyautogui
 import time
+from PIL import Image
+
+
+# def get_image_dimensions(image):                    # there's a problem with encoding
+#     width, heigth = Image.open(open(image)).size
+#     return width, heigth
+# print(get_image_dimensions('example.png'))
 
 
 def get_image_data(image):
+
     img_data = {}
     for wdth_pix in range(10):
         for lngth_pix in range(23):
