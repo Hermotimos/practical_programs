@@ -53,7 +53,6 @@ def await_image(image_file):
 
 
 def go_to_image(image):
-    """ Moves cursor to image located on screen """
     location = pyautogui.locateOnScreen(image)
     center = pyautogui.center(location)
     pyautogui.moveTo(center[0], center[1], duration=0.5)
