@@ -20,13 +20,13 @@ def get_image_data(image_with_size=()):
             img_data[(wdth_pix, lngth_pix)] = val
     return img_data
 
-# # Test of functions screenshot_1920x1080 + get_image_data: for recognition of 0 (passed)
-# screenshot = screenshot_1920x1080(465, 51, 474, 73)
+# # Test of functions get_screenshot_with_size + get_image_data: for recognition of 0 (passed)
+# screenshot = get_screenshot_with_size(465, 51, 474, 73)
 # print(screenshot)
 # print(get_image_data(screenshot))
 # print(get_image_data(screenshot) == NUMBERS_0_10[0])
 
-# screenshot = screenshot_1920x1080(553, 311, 628, 318)
+# screenshot = get_screenshot_with_size(553, 311, 628, 318)
 # print(screenshot)
 # print(get_image_data(screenshot))
 
@@ -38,7 +38,7 @@ def recognize_number(scrnshot):
             recognized_num = number
     return recognized_num
 
-# screen_now = screenshot_1920x1080(465, 51, 474, 73)
+# screen_now = get_screenshot_with_size(465, 51, 474, 73)
 # print(recognize_number(screen_now))
 
 

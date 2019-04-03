@@ -1,6 +1,6 @@
 import pyautogui
 import time
-from image_processing import recognize_number, await_image, screenshot_1920x1080
+from image_processing import recognize_number, await_image, get_screenshot_with_size
 
 
 pyautogui.PAUSE = 0.1                   # sets pause between function calls to n secs
@@ -38,7 +38,7 @@ def click_search_engine():
 
 
 def click_back_n_times():
-    screen = screenshot_1920x1080(465, 51, 474, 73)     # screenshot of 'Nowe' value
+    screen = get_screenshot_with_size(465, 51, 474, 73)     # screenshot of 'Nowe' value
     n = recognize_number(screen) + 1                    # adding one for basal 1 back click
     pyautogui.moveTo(1785, 142, duration=0.5)
     pyautogui.click(clicks=n, interval=0.5)
