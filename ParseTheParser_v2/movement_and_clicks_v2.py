@@ -40,7 +40,7 @@ def click_start():
         go_to_image('start_before.png')
         pyautogui.click()
     else:
-        click_search()
+        click_next()
         click_start()
         # possible infinite recursion is a safety measure in case of site malfunction
 
@@ -64,7 +64,6 @@ def click_back_n_times():
 
 
 def check_site():
-
     go_to_image('blueline.png')                 # TODO gotoimage causes errors when no such image: add check before !!!
     pyautogui.scroll(7000)
     is_right_site = await_image('lista.png')

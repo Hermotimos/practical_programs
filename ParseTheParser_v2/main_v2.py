@@ -28,3 +28,10 @@ try:
     autoparse(pages)
 except pyautogui.FailSafeException:
     print("FAILSAFE-ESCAPED.")
+
+
+
+# TODO change of program window size seems to change pixels in numbers data
+# Sol1 - measure accuracy
+# Sol2 - full screen only [add to program]
+# Sol3 - look for one

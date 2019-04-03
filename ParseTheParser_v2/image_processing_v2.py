@@ -38,8 +38,8 @@ def recognize_number(scrnshot):
             recognized_num = number
     return recognized_num
 
-# screen_now = get_screenshot_with_size(465, 51, 474, 73)
-# print(recognize_number(screen_now))
+screen_now = get_screenshot_with_size(465, 51, 474, 73)
+print(recognize_number(screen_now))
 
 
 def await_image(image_file):
