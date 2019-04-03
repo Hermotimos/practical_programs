@@ -1,5 +1,6 @@
 from ParseTheParser import autoparse
 
+
 def ask_confirm():
     confirm = input('\n\n!!! REMEMBER !!!\n\n'
                     '0. FULL SCREEN\n'
