@@ -1,5 +1,4 @@
 import pyautogui
-import time
 from data import NUMBERS_0_10
 
 
@@ -11,6 +10,8 @@ def screenshot_1920x1080(up_from_left=0, up_from_top=0, d_from_left=1920, d_from
 
 
 def get_image_data(image_with_size=()):
+    """ returns dict ((pixel_coordinates): (rgb_info), ...)
+    ex. {(0, 0): (240, 240, 240), (0, 1): (240, 240, 240), ...} """
     width, height = image_with_size[1]
     img_data = {}
     for wdth_pix in range(width+1):
@@ -19,7 +20,7 @@ def get_image_data(image_with_size=()):
             img_data[(wdth_pix, lngth_pix)] = val
     return img_data
 
-# # Test of functions screenshot_1920x1080 + get_image_data: for 0 recognition (passed)
+# # Test of functions screenshot_1920x1080 + get_image_data: for recognition of 0 (passed)
 # screenshot = screenshot_1920x1080(465, 51, 474, 73)
 # print(screenshot)
 # print(get_image_data(screenshot))
@@ -39,11 +40,6 @@ def recognize_number(scrnshot):
 
 # screen_now = screenshot_1920x1080(465, 51, 474, 73)
 # print(recognize_number(screen_now))
-
-
-def compare_images(img_data1, img_data2):
-    if img_data1 == img_data2:
-        return True
 
 
 def await_image(image_file):
