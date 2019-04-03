@@ -1,4 +1,4 @@
-from movement_and_clicks import autoparse
+from movement_and_clicks_v2 import autoparse
 import pyautogui
 
 
