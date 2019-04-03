@@ -2,7 +2,7 @@ import pyautogui
 from data import NUMBERS_0_10
 
 
-def screenshot_1920x1080(up_from_left=0, up_from_top=0, d_from_left=1920, d_from_top=1080):
+def get_screenshot_with_size(up_from_left=0, up_from_top=0, d_from_left=1920, d_from_top=1080):
     screenshot = pyautogui.screenshot(region=(up_from_left, up_from_top, d_from_left, d_from_top))
     width = d_from_left - up_from_left
     height = d_from_top - up_from_top
@@ -52,5 +52,9 @@ def await_image(image_file):
 # print(await_image('znaleziono1.png'))
 
 
-
+def go_to_image(image):
+    """ Moves cursor to image located on screen """
+    location = pyautogui.locateOnScreen(image)
+    center = pyautogui.center(location)
+    pyautogui.moveTo(center[0], center[1], duration=0.5)
 

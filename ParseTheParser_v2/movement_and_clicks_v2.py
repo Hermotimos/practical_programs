@@ -1,26 +1,26 @@
 import pyautogui
 import time
-from image_processing import recognize_number, await_image, get_screenshot_with_size
+from image_processing_v2 import recognize_number, await_image, get_screenshot_with_size, go_to_image
 
 
 pyautogui.PAUSE = 0.1                   # sets pause between function calls to n secs
 pyautogui.FAILSAFE = True               # possible escape by moving cursor to upper left corner of screen
 
 
-def correct_scrollbar():
-    pyautogui.moveTo(1906, 193, duration=0.5)
-    pyautogui.click()
+def scrollbar_up():
+    go_to_image('status_for_centering.png')
+    pyautogui.scroll(7000)
 
 
 def click_search():
-    pyautogui.moveTo(1185, 813, duration=0.5)
+    go_to_image('szukaj.png')
     pyautogui.click()
 
 
 def click_start():
-    isstarted = await_image('znaleziono2.png')
+    isstarted = await_image('start_before.png')
     if isstarted:
-        pyautogui.moveTo(341, 75, duration=0.5)
+        go_to_image('start_before.png')
         pyautogui.click()
     else:
         click_start()
@@ -28,9 +28,9 @@ def click_start():
 
 
 def click_search_engine():
-    isdone = await_image('start_grey.png')
+    isdone = await_image('start_after.png')
     if isdone:
-        pyautogui.moveTo(48, 116, duration=0.5)
+        go_to_image('wyszukiwarka.png')
         pyautogui.click()
     else:
         click_search_engine()
@@ -39,34 +39,32 @@ def click_search_engine():
 
 def click_back_n_times():
     screen = get_screenshot_with_size(465, 51, 474, 73)     # screenshot of 'Nowe' value
-    n = recognize_number(screen) + 1                    # adding one for basal 1 back click
-    pyautogui.moveTo(1785, 142, duration=0.5)
+    n = recognize_number(screen) + 1                        # adding one for basal 1 back click
+    go_to_image('back.png')
     pyautogui.click(clicks=n, interval=0.5)
 
 
 def check_site():
-    pyautogui.moveTo(1785, 500, duration=1)
+    go_to_image('blueline.png')
     pyautogui.scroll(7000)
-    is_right_site = await_image('znaleziono2.png')
+    is_right_site = await_image('lista.png')
     if is_right_site:
         pass
     else:
-        pyautogui.moveTo(1785, 142, duration=1)
+        go_to_image('back.png')
         pyautogui.click()
         check_site()
 
 
 def click_next():
     pyautogui.scroll(-7000)
-    location = pyautogui.locateOnScreen('nastepna.png')
-    center = pyautogui.center(location)
-    pyautogui.moveTo(center[0], center[1], duration=0.5)
+    go_to_image('nastepna.png')
     pyautogui.click()
 
 
 def autoparse():
     time.sleep(5)                                           # time given to switch windows after program start
-    correct_scrollbar()
+    scrollbar_up()
     click_search()
 
     while True:
