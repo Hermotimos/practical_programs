@@ -1,6 +1,5 @@
 import pyautogui
-import time
-from data import NUMBERS_LIST
+from data import NUMBERS_0_10
 
 
 # def get_image_dimensions(image):                    # there's a problem with encoding
@@ -30,33 +29,38 @@ def get_image_data(image_with_size=()):
 # screenshot = screenshot_1920x1080(465, 51, 474, 73)
 # print(screenshot)
 # print(get_image_data(screenshot))
-# print(get_image_data(screenshot) == NUMBERS_LIST[0])
-
-
-def compare_images(img_data1, img_data2):
-    time.sleep(3)                           # todo remove this line when ready, now to switch windows
-    if img_data1 == img_data2:
-        return True
-    else:
-        return False
+# print(get_image_data(screenshot) == NUMBERS_0_10[0])
 
 
 def recognize_number(scrnshot):
-    result = False
+    recognized_number = False
     for number in range(0, 11):
-        if get_image_data(scrnshot) == NUMBERS_LIST[number]:
-            result = number
-    return result
-
+        if get_image_data(scrnshot) == NUMBERS_0_10[number]:
+            recognized_number = number
+    return recognized_number
 
 # screen_now = pyautogui.screenshot(region=(465, 51, 474, 73))
 # print(recognize_number(screen_now))
 
 
+def compare_images(img_data1, img_data2):
+    if img_data1 == img_data2:
+        return True
 
 
 
 
+def await_image(image_file):
+    isfound = pyautogui.locateOnScreen(image_file, minSearchTime=60)  # waits 60 secs for image; todo: f to click again + wait again
+    if isfound:
+        return True
+    else:
+        return False
+
+# print(await_image('nextButton.png'))
+
+
+# def await_not_blank():
 
 
 
