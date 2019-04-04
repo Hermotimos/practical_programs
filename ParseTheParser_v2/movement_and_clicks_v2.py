@@ -1,5 +1,5 @@
 import pyautogui
-import random
+import datetime
 from image_processing_v2 import try_recognize_number, await_image, get_screenshot_with_size, go_to_image, \
     try_go_to_image
 
@@ -19,10 +19,7 @@ def autoparse(how_many_pages):
         check_site()
         click_next()
         how_many_pages -= 1
-
-    last_done = pyautogui.screenshot()
-    rand = random.random()
-    last_done.save('C:\\Users\\Lukasz\\Desktop\\recent{}.jpg'.format(rand))
+    finish()
 
 
 def scrollbar_up():
@@ -85,3 +82,11 @@ def check_site():
         try_go_to_image('back.png')
         pyautogui.click()
         check_site()
+
+
+def finish():
+    last_done = pyautogui.screenshot()
+    now = datetime.datetime.now()
+    now_str = str(now).replace(':', '_')
+    last_done.save('C:\\Users\\Lukasz\\Desktop\\recent__{}.jpg'.format(now_str))
+    print("Finished: {}".format(now))

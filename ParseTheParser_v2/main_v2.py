@@ -10,4 +10,3 @@ try:
     autoparse(pages)
 except pyautogui.FailSafeException:
     print("FAILSAFE-ESCAPED.")
-
