@@ -1,5 +1,5 @@
 import pyautogui
-from data import NUMBERS_0_10
+from data_v2 import NUMBERS_0_10
 
 
 def get_screenshot_with_size(up_from_left=0, up_from_top=0, d_from_left=1920, d_from_top=1080):
