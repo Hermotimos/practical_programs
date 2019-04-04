@@ -3,7 +3,7 @@ import datetime
 from image_processing_v2 import try_recognize_number, await_image, get_screenshot_with_size, go_to_image, \
     try_go_to_image
 
-status_for_centering = '.\\status_for_centering.png'
+status_button = '.\\status_button.png'
 szukaj = '.\\szukaj.png'
 start_before = '.\\start_before.png'
 nastepna = '.\\nastepna.png'
@@ -33,7 +33,7 @@ def autoparse(how_many_pages):
 
 
 def scrollbar_down():
-    try_go_to_image(status_for_centering)
+    try_go_to_image(status_button)
     pyautogui.scroll(-7000)
 
 
