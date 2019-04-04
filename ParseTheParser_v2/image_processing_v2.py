@@ -31,19 +31,29 @@ def get_image_data(image_with_size=()):
 # print(get_image_data(screenshot))
 
 
-def recognize_number(scrnshot):
+def try_recognize_number(screenshot):
+    num = recognize_number(screenshot)
+    if num:
+        return num
+    else:
+        print("Number at position 'Nowe' not recognized. Try to determine the cause for future development.")
+        return num
+
+
+def recognize_number(screenshot):
     recognized_num = False
     for number in range(0, 11):
-        if get_image_data(scrnshot) == NUMBERS_0_10[number]:
+        if get_image_data(screenshot) == NUMBERS_0_10[number]:
             recognized_num = number
     return recognized_num
+
 
 screen_now = get_screenshot_with_size(465, 51, 474, 73)
 print(recognize_number(screen_now))
 
 
-def await_image(image_file):
-    isfound = pyautogui.locateOnScreen(image_file, minSearchTime=60)  # waits 60 secs for image;
+def await_image(image_file, seconds=30):
+    isfound = pyautogui.locateOnScreen(image_file, minSearchTime=seconds)        # todo was 60, test if 10 ok
     if isfound:
         return True
     else:

@@ -1,6 +1,6 @@
 import pyautogui
 import random
-from image_processing_v2 import recognize_number, await_image, get_screenshot_with_size, go_to_image, try_go_to_image
+from image_processing_v2 import try_recognize_number, await_image, get_screenshot_with_size, go_to_image, try_go_to_image
 
 
 pyautogui.PAUSE = 0.1                   # sets pause between function calls to n secs
@@ -35,7 +35,7 @@ def click_search():
 
 
 def click_start():
-    isstarted = await_image('start_before.png')
+    isstarted = await_image('start_before.png', 30)
     if isstarted:
         go_to_image('start_before.png')
         pyautogui.click()
@@ -56,13 +56,13 @@ def click_search_engine():
 def click_back_n_times():
     """ Checks number at specific location (n); adds 1 due to feature's design; goes-back n+1 times"""
     screen = get_screenshot_with_size(465, 51, 474, 73)
-    n = recognize_number(screen) + 1
+    n = try_recognize_number(screen) + 1
     try_go_to_image('back.png')
     pyautogui.click(clicks=n, interval=0.5)
 
 
 def check_site():
-    isblueline = await_image('blueline.png')
+    isblueline = await_image('blueline.png', 10)
     if isblueline:
         go_to_image('blueline.png')
         pyautogui.scroll(7000)
@@ -71,7 +71,7 @@ def check_site():
         pyautogui.click()
         check_site()
 
-    is_right_site = await_image('lista.png')
+    is_right_site = await_image('lista.png', 5)
     if is_right_site:
         pass
     else:
