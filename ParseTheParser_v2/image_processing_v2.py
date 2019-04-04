@@ -20,16 +20,6 @@ def get_image_data(image_with_size=()):
             img_data[(wdth_pix, lngth_pix)] = val
     return img_data
 
-# # Test of functions get_screenshot_with_size + get_image_data: for recognition of 0 (passed)
-# screenshot = get_screenshot_with_size(465, 51, 474, 73)
-# print(screenshot)
-# print(get_image_data(screenshot))
-# print(get_image_data(screenshot) == NUMBERS_0_10[0])
-
-# screenshot = get_screenshot_with_size(553, 311, 628, 318)
-# print(screenshot)
-# print(get_image_data(screenshot))
-
 
 def try_recognize_number(screenshot):
     num = recognize_number(screenshot)
@@ -48,18 +38,12 @@ def recognize_number(screenshot):
     return recognized_num
 
 
-screen_now = get_screenshot_with_size(465, 51, 474, 73)
-print(recognize_number(screen_now))
-
-
 def await_image(image_file, seconds=30):
-    isfound = pyautogui.locateOnScreen(image_file, minSearchTime=seconds)        # todo was 60, test if 10 ok
+    isfound = pyautogui.locateOnScreen(image_file, minSearchTime=seconds)
     if isfound:
         return True
     else:
         return False
-
-# print(await_image('znaleziono1.png'))
 
 
 def try_go_to_image(image):
@@ -73,3 +57,19 @@ def go_to_image(image):
     location = pyautogui.locateOnScreen(image)
     center = pyautogui.center(location)
     pyautogui.moveTo(center[0], center[1], duration=0.5)
+
+
+# TESTS
+#
+# screen_now = get_screenshot_with_size(465, 51, 474, 73)
+# print(recognize_number(screen_now))
+#
+# # Test of functions get_screenshot_with_size + get_image_data: for recognition of 0 (passed)
+# screenshot = get_screenshot_with_size(465, 51, 474, 73)
+# print(screenshot)
+# print(get_image_data(screenshot))
+# print(get_image_data(screenshot) == NUMBERS_0_10[0])
+
+# screenshot = get_screenshot_with_size(553, 311, 628, 318)
+# print(screenshot)
+# print(get_image_data(screenshot))
