@@ -52,8 +52,14 @@ def await_image(image_file):
 # print(await_image('znaleziono1.png'))
 
 
-def go_to_image(image):           # TODO generates errors when no such image: may be used only after some kind of check
+def try_go_to_image(image):
+    try:
+        go_to_image(image)
+    except TypeError:
+        try_go_to_image(image)
+
+
+def go_to_image(image):
     location = pyautogui.locateOnScreen(image)
     center = pyautogui.center(location)
     pyautogui.moveTo(center[0], center[1], duration=0.5)
-
