@@ -1,7 +1,7 @@
 import time
 import pyautogui
 from movement_and_clicks_v2 import autoparse
-from begin import ask_confirm
+from begin_v2 import ask_confirm
 
 
 pages = ask_confirm()
