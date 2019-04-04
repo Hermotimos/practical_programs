@@ -1,4 +1,5 @@
 import pyautogui
+import datetime
 from data_v2 import NUMBERS_0_10
 
 
@@ -26,7 +27,9 @@ def try_recognize_number(screenshot):
     if num:
         return num
     else:
-        print("Number at position 'Nowe' not recognized. Try to determine the cause for future development.")
+        now = datetime.datetime.now()
+        print("{}: Number at position 'Nowe' not recognized. "
+              "\nTry to determine the cause for future development.".format(now))
         return num
 
 
