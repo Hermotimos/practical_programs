@@ -2,6 +2,21 @@ import pyautogui
 import datetime
 from data_v2 import NUMBERS_0_10
 
+nowe_0 = '.\\nowe_0.png'
+nowe_1 = '.\\nowe_1.png'
+nowe_2 = '.\\nowe_2.png'
+nowe_3 = '.\\nowe_3.png'
+nowe_4 = '.\\nowe_4.png'
+nowe_5 = '.\\nowe_5.png'
+nowe_6 = '.\\nowe_6.png'
+nowe_7 = '.\\nowe_7.png'
+nowe_8 = '.\\nowe_8.png'
+nowe_9 = '.\\nowe_9.png'
+nowe_10 = '.\\nowe_10.png'
+
+
+
+
 
 def get_screenshot_with_size(up_from_left=0, up_from_top=0, d_from_left=1920, d_from_top=1080):
     screenshot = pyautogui.screenshot(region=(up_from_left, up_from_top, d_from_left, d_from_top))
