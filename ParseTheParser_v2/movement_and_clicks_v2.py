@@ -1,9 +1,9 @@
 import pyautogui
 import datetime
-from image_processing_v2 import try_recognize_number, await_image, get_screenshot_with_size, go_to_image, \
-    try_go_to_image
+from image_processing_v2 import try_recognize_number, await_image, go_to_image, try_go_to_image
 
-status_for_centering = '.\\status_for_centering.png'
+
+status_button = '.\\status_button.png'
 szukaj = '.\\szukaj.png'
 start_before = '.\\start_before.png'
 nastepna = '.\\nastepna.png'
@@ -33,7 +33,7 @@ def autoparse(how_many_pages):
 
 
 def scrollbar_down():
-    try_go_to_image(status_for_centering)
+    try_go_to_image(status_button)
     pyautogui.scroll(-7000)
 
 
@@ -68,9 +68,7 @@ def click_search_engine():
 
 
 def click_back_n_times():
-    """ Checks number at specific location (n); adds 1 due to feature's design; goes-back n+1 times"""
-    screen = get_screenshot_with_size(465, 51, 474, 73)
-    n = try_recognize_number(screen) + 1
+    n = try_recognize_number() + 1
     try_go_to_image(back)
     pyautogui.click(clicks=n, interval=0.5)
 
