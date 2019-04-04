@@ -62,8 +62,8 @@ def click_back_n_times():
 
 
 def check_site():
-    isblueline = await_image('blueline.png', 10)
-    if isblueline:
+    isblueline_visible = await_image('blueline.png', 10)
+    if isblueline_visible:
         go_to_image('blueline.png')
         pyautogui.scroll(7000)
     else:
@@ -71,8 +71,8 @@ def check_site():
         pyautogui.click()
         check_site()
 
-    is_right_site = await_image('lista.png', 5)
-    if is_right_site:
+    is_lista_visible = await_image('lista.png', 5)
+    if is_lista_visible:
         pass
     else:
         try_go_to_image('back.png')
