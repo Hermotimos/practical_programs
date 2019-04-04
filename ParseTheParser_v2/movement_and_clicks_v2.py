@@ -1,6 +1,6 @@
 import pyautogui
 import random
-from image_processing_v2 import recognize_number, await_image, get_screenshot_with_size, try_go_to_image
+from image_processing_v2 import recognize_number, await_image, get_screenshot_with_size, go_to_image, try_go_to_image
 
 
 pyautogui.PAUSE = 0.1                   # sets pause between function calls to n secs
@@ -37,22 +37,20 @@ def click_search():
 def click_start():
     isstarted = await_image('start_before.png')
     if isstarted:
-        try_go_to_image('start_before.png')
+        go_to_image('start_before.png')
         pyautogui.click()
     else:
         click_next()
         click_start()
-        # possible infinite recursion is a safety measure in case of site malfunction
 
 
 def click_search_engine():
     isdone = await_image('start_after.png')
     if isdone:
-        try_go_to_image('wyszukiwarka.png')
+        go_to_image('wyszukiwarka.png')
         pyautogui.click()
     else:
         click_search_engine()
-        # possible infinite recursion is a safety measure in case of site malfunction
 
 
 def click_back_n_times():
@@ -64,8 +62,15 @@ def click_back_n_times():
 
 
 def check_site():
-    try_go_to_image('blueline.png')                 # TODO gotoimage causes errors when no such image: add check before !!!
-    pyautogui.scroll(7000)
+    isblueline = await_image('blueline.png')
+    if isblueline:
+        go_to_image('blueline.png')
+        pyautogui.scroll(7000)
+    else:
+        try_go_to_image('back.png')
+        pyautogui.click()
+        check_site()
+
     is_right_site = await_image('lista.png')
     if is_right_site:
         pass
