@@ -1,10 +1,11 @@
 import pyautogui
 import random
-from image_processing_v2 import try_recognize_number, await_image, get_screenshot_with_size, go_to_image, try_go_to_image
+from image_processing_v2 import try_recognize_number, await_image, get_screenshot_with_size, go_to_image, \
+    try_go_to_image
 
 
-pyautogui.PAUSE = 0.1                   # sets pause between function calls to n secs
-pyautogui.FAILSAFE = True               # possible escape by moving cursor to upper left corner of screen
+pyautogui.PAUSE = 0.1
+pyautogui.FAILSAFE = True
 
 
 def autoparse(how_many_pages):
@@ -44,6 +45,12 @@ def click_start():
         click_start()
 
 
+def click_next():
+    pyautogui.scroll(-7000)
+    try_go_to_image('nastepna.png')
+    pyautogui.click()
+
+
 def click_search_engine():
     isdone = await_image('start_after.png')
     if isdone:
@@ -78,13 +85,3 @@ def check_site():
         try_go_to_image('back.png')
         pyautogui.click()
         check_site()
-
-
-def click_next():
-    pyautogui.scroll(-7000)
-    try_go_to_image('nastepna.png')
-    pyautogui.click()
-
-
-
-
