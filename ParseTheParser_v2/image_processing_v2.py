@@ -15,23 +15,18 @@ nowe_10 = '.\\nowe_10.png'
 nowe_numbers = (nowe_0, nowe_1, nowe_2, nowe_3, nowe_4, nowe_5, nowe_6, nowe_7, nowe_8, nowe_9, nowe_10)
 
 
-def try_recognize_number():
-    num = recognize_number()
+def recognize_number(guess=0):
     try:
-        assert -1 < num < 11
-        return num
-    except Exception as e:
-        now = datetime.datetime.now()
-        print("{}: Number at position 'Nowe' not recognized: {}".format(now.strftime('%H:%M:%S'), e))
-        return 0
-
-
-def recognize_number():
-    recognized_num = -1
-    for number, image in enumerate(nowe_numbers):
-        if pyautogui.locateOnScreen(image):
-            recognized_num = number
-    return recognized_num
+        assert pyautogui.locateOnScreen(nowe_numbers[guess])
+        return guess
+    except AssertionError:
+        guess += 1
+        if guess < 11:
+            recognize_number(guess)
+        else:
+            now = datetime.datetime.now()
+            print('{}: Number at position "Nowe" not recognized'.format(now.strftime('%H:%M:%S')))
+            return 0
 
 
 def await_image(image_file, seconds=30):

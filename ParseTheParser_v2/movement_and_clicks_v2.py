@@ -1,7 +1,7 @@
 import pyautogui
 import datetime
 import time
-from image_processing_v2 import try_recognize_number, await_image, try_go_to_image
+from image_processing_v2 import await_image, try_go_to_image, recognize_number
 
 pyautogui.PAUSE = 0.1
 pyautogui.FAILSAFE = True
@@ -12,7 +12,6 @@ IMG_ZUZASAD = '.\\IMG_ZUZASAD.png'
 IMG_RODZAJ = '.\\IMG_RODZAJ.png'
 IMG_WYROK = '.\\IMG_WYROK.png'
 IMG_NROSTAT = '.\\IMG_NROSTAT.png'
-
 IMG_STATUS = '.\\IMG_STATUS.png'
 IMG_SZUKAJ = '.\\IMG_SZUKAJ.png'
 IMG_START_BLACK = '.\\IMG_START_BLACK.png'
@@ -24,14 +23,18 @@ IMG_BACK = '.\\IMG_BACK.png'
 IMG_LISTA = '.\\IMG_LISTA.png'
 
 
-def autoparse(how_many_pages, counter_pages=1):
+def autoparse(pages_to_browse):
+    page_cnt = 0
+    new_cnt = 0
+
     print('-' * 20, 'START', '-' * 20)
-    counter_new = 0
     correct_settings()
     start_browsing()
 
-    while how_many_pages > 0:
-        print('{}'.format(str(counter_pages)))
+    while pages_to_browse > 0:
+        page_cnt += 1
+        pages_to_browse -= 1
+        print('{}'.format(str(page_cnt)))
 
         click_start()
         click_search_engine()
@@ -40,13 +43,11 @@ def autoparse(how_many_pages, counter_pages=1):
         actively_check_list_site()
         click_next()
 
-        how_many_pages -= 1
-        counter_pages += 1
-        counter_new += new_items
-        print('\t'*10, '+{}'.format(counter_new))
-        print('\t'*12, 'SUM TOTAL:\t{}'.format(counter_new))
+        new_cnt += new_items
+        print('\t'*10, '+{}'.format(new_cnt))
+        print('\t'*12, 'SUM TOTAL:\t{}'.format(new_cnt))
 
-    finish_browsing(counter_new)
+    finish_browsing(new_cnt)
 
 
 def correct_settings():
@@ -154,9 +155,9 @@ def click_search_engine():
 
 def click_back_n_times():
     t = time.time()
-    new = try_recognize_number()
+    new = recognize_number()
     n_times = new + 1
-    print('IMG_BACK: x{}'.format(n_times))
+    print('back x{}'.format(n_times))
     try_go_to_image(IMG_BACK)
     pyautogui.click(clicks=n_times, interval=0.5)
     print('\t{}s'.format(round(time.time() - t), 0))
