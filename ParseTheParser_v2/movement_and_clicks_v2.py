@@ -1,7 +1,7 @@
 import pyautogui
 import datetime
 import time
-from image_processing_v2 import await_image, try_go_to_image, recognize_number
+from image_processing_v2 import await_image, try_click_image, recognize_number
 
 pyautogui.PAUSE = 0.1
 pyautogui.FAILSAFE = True
@@ -39,13 +39,11 @@ def autoparse(pages_to_browse):
         click_start()
         switch_to_search_window()
         new_items = click_back_n_times()
-        # actively_check_blueline()             # todo del if works without it
         actively_check_list_site()
         click_next()
 
         new_cnt += new_items
-        print('\t'*10, '+{}'.format(new_cnt))
-        print('\t'*12, 'SUM TOTAL:\t{}'.format(new_cnt))
+        print('\t'*10, '+{} [SUM TOTAL: {}]'.format(new_items, new_cnt))
 
     finish_browsing(new_cnt)
 
@@ -55,7 +53,7 @@ def autoparse(pages_to_browse):
 #
 #     def correct_homepage():
 #         t = time.time()
-#         try_go_to_image(IMG_HOMEPAGE)
+#         try_click_image(IMG_HOMEPAGE)
 #         pyautogui.click()
 #         print('\t{}s'.format(round(time.time() - t), 0))
 #
@@ -63,7 +61,7 @@ def autoparse(pages_to_browse):
 #         t = time.time()
 #         is_zteza_none = await_image(IMG_ZTEZA, 1)
 #         if is_zteza_none:
-#             try_go_to_image(IMG_ZTEZA)
+#             try_click_image(IMG_ZTEZA)
 #             pyautogui.move(90, 0)
 #             pyautogui.click()
 #             print('\t{}s'.format(round(time.time() - t), 0))
@@ -72,7 +70,7 @@ def autoparse(pages_to_browse):
 #         t = time.time()
 #         is_zuzasad_none = await_image(IMG_ZUZASAD, 1)
 #         if is_zuzasad_none:
-#             try_go_to_image(IMG_ZUZASAD)
+#             try_click_image(IMG_ZUZASAD)
 #             pyautogui.move(30, 0)
 #             pyautogui.click()
 #             print('\t{}s'.format(round(time.time() - t), 0))
@@ -81,15 +79,15 @@ def autoparse(pages_to_browse):
 #         t = time.time()
 #         is_rodzaj_none = await_image(IMG_RODZAJ, 1)
 #         if is_rodzaj_none:
-#             try_go_to_image(IMG_RODZAJ)
+#             try_click_image(IMG_RODZAJ)
 #             pyautogui.click()
-#             try_go_to_image(IMG_WYROK)
+#             try_click_image(IMG_WYROK)
 #             pyautogui.click()
 #             print('\t{}s'.format(round(time.time() - t), 0))
 #
 #     def correct_nrostat():
 #         t = time.time()
-#         try_go_to_image(IMG_NROSTAT)
+#         try_click_image(IMG_NROSTAT)
 #         pyautogui.move(0, 20)
 #         pyautogui.click()
 #         pyautogui.press('delete', presses=5)
@@ -107,15 +105,13 @@ def start_browsing():
 
     def scrollbar_down():
         t = time.time()
-        try_go_to_image(IMG_STATUS)
-        pyautogui.click()
+        try_click_image(IMG_STATUS)
         pyautogui.scroll(-7000)
         print('\t{}s'.format(round(time.time() - t), 0))
 
     def click_search():
         t = time.time()
-        try_go_to_image(IMG_SZUKAJ)
-        pyautogui.click()
+        try_click_image(IMG_SZUKAJ)
         print('\t{}s'.format(round(time.time() - t), 0))
 
     scrollbar_down()
@@ -127,8 +123,7 @@ def click_start():
     t = time.time()
     is_start_black_visible = await_image(IMG_START_BLACK, 30)
     if is_start_black_visible:
-        try_go_to_image(IMG_START_BLACK)
-        pyautogui.click()
+        try_click_image(IMG_START_BLACK)
         print('\t{}s'.format(round(time.time() - t), 0))
     else:
         click_next()
@@ -139,8 +134,7 @@ def switch_to_search_window():
     t = time.time()
     is_start_grey_visible = await_image(IMG_START_GREY, 60)
     if is_start_grey_visible:
-        try_go_to_image(IMG_WYSZUKIWARKA)
-        pyautogui.click()
+        try_click_image(IMG_WYSZUKIWARKA)
         print('\t{}s'.format(round(time.time() - t), 0))
     else:
         switch_to_search_window()
@@ -151,24 +145,9 @@ def click_back_n_times():
     new = recognize_number()
     n_times = new + 1
     print('back x{}'.format(n_times))
-    try_go_to_image(IMG_BACK)
-    pyautogui.click(clicks=n_times, interval=0.5)
+    try_click_image(IMG_BACK, clicks=n_times, interval=0.5)
     print('\t{}s'.format(round(time.time() - t), 0))
     return new
-
-
-# def actively_check_blueline():                    # todo del if works without it
-#     t = time.time()
-#     isblueline_visible = await_image(IMG_BLUELINE, 10)
-#
-#     if isblueline_visible:
-#         try_go_to_image(IMG_BLUELINE)
-#         pyautogui.scroll(7000)
-#         print('\t{}s'.format(round(time.time() - t), 0))
-#     else:
-#         try_go_to_image(IMG_BACK)
-#         pyautogui.click()
-#         actively_check_blueline()
 
 
 def actively_check_list_site():
@@ -176,19 +155,17 @@ def actively_check_list_site():
     is_lista_visible = await_image(IMG_LISTA, 5)
 
     if is_lista_visible:
-        try_go_to_image(IMG_LISTA)
+        try_click_image(IMG_LISTA)
         print('\t{}s'.format(round(time.time() - t), 0))
     else:
-        try_go_to_image(IMG_BACK)
-        pyautogui.click()
+        try_click_image(IMG_BACK)
         actively_check_list_site()
 
 
 def click_next():
     t = time.time()
     pyautogui.scroll(-7000)
-    try_go_to_image(IMG_NASTEPNA)
-    pyautogui.click()
+    try_click_image(IMG_NASTEPNA)
     print('\t{}s'.format(round(time.time() - t), 0))
 
 

@@ -37,22 +37,23 @@ def await_image(image_file, seconds=30):
         return False
 
 
-def try_go_to_image(image, err_cnt=0):
+def try_click_image(image, err_cnt=0, clicks=1, interval=0.0):
     name = image[6:].split('.')[0]
     try:
         if err_cnt == 0:
             print('try: {:15} {:3}'.format(name, err_cnt), end='')
-        go_to_image(image)
+        click_image(image, clicks=clicks, interval=interval)
     except TypeError:
         err_cnt += 1
         print('{}try: {:15} {:3}'.format('\b'*25, name, err_cnt), end='')
-        try_go_to_image(image, err_cnt)
+        try_click_image(image, err_cnt, clicks=clicks, interval=interval)
 
 
-def go_to_image(image):
+def click_image(image, clicks=1, interval=0.0):
     location = pyautogui.locateOnScreen(image)
     center = pyautogui.center(location)
     pyautogui.moveTo(center[0], center[1], duration=0.5)
+    pyautogui.click(clicks=clicks, interval=interval)
 
 
 # TESTS
