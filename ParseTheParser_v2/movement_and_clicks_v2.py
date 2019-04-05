@@ -37,9 +37,9 @@ def autoparse(pages_to_browse):
         print('{}'.format(str(page_cnt)))
 
         click_start()
-        click_search_engine()
+        switch_to_search_window()
         new_items = click_back_n_times()
-        actively_check_blueline()
+        # actively_check_blueline()             # todo del if works without it
         actively_check_list_site()
         click_next()
 
@@ -135,23 +135,15 @@ def click_start():
         click_start()
 
 
-def click_next():
+def switch_to_search_window():
     t = time.time()
-    pyautogui.scroll(-7000)
-    try_go_to_image(IMG_NASTEPNA)
-    pyautogui.click()
-    print('\t{}s'.format(round(time.time() - t), 0))
-
-
-def click_search_engine():
-    t = time.time()
-    is_start_grey_visible = await_image(IMG_START_GREY)
+    is_start_grey_visible = await_image(IMG_START_GREY, 60)
     if is_start_grey_visible:
         try_go_to_image(IMG_WYSZUKIWARKA)
         pyautogui.click()
         print('\t{}s'.format(round(time.time() - t), 0))
     else:
-        click_search_engine()
+        switch_to_search_window()
 
 
 def click_back_n_times():
@@ -165,18 +157,18 @@ def click_back_n_times():
     return new
 
 
-def actively_check_blueline():
-    t = time.time()
-    isblueline_visible = await_image(IMG_BLUELINE, 10)
-
-    if isblueline_visible:
-        try_go_to_image(IMG_BLUELINE)
-        pyautogui.scroll(7000)
-        print('\t{}s'.format(round(time.time() - t), 0))
-    else:
-        try_go_to_image(IMG_BACK)
-        pyautogui.click()
-        actively_check_blueline()
+# def actively_check_blueline():                    # todo del if works without it
+#     t = time.time()
+#     isblueline_visible = await_image(IMG_BLUELINE, 10)
+#
+#     if isblueline_visible:
+#         try_go_to_image(IMG_BLUELINE)
+#         pyautogui.scroll(7000)
+#         print('\t{}s'.format(round(time.time() - t), 0))
+#     else:
+#         try_go_to_image(IMG_BACK)
+#         pyautogui.click()
+#         actively_check_blueline()
 
 
 def actively_check_list_site():
@@ -190,6 +182,14 @@ def actively_check_list_site():
         try_go_to_image(IMG_BACK)
         pyautogui.click()
         actively_check_list_site()
+
+
+def click_next():
+    t = time.time()
+    pyautogui.scroll(-7000)
+    try_go_to_image(IMG_NASTEPNA)
+    pyautogui.click()
+    print('\t{}s'.format(round(time.time() - t), 0))
 
 
 def finish_browsing(new_items):
