@@ -1,3 +1,4 @@
+
 def ask_pages():
     confirm = input('Enter number of pages to browse and confirm by ENTER:\n')
     try:
@@ -10,11 +11,11 @@ def ask_pages():
 
 
 def ask_correct():
-    return yes_or_no('Would you like to automatically check start settings and correct if wrong (y/n) ?')
+    return yes_or_no('Would you like to automatically check start settings and correct if wrong (y/n) ?\n')
 
 
 def ask_fullscreen():
-    return yes_or_no('Would you like to switch to full screen for better reliability (y/n) ?')
+    return yes_or_no('Would you like to switch to full screen for better reliability (y/n) ?\n')
 
 
 def yes_or_no(prompt):
