@@ -1,5 +1,6 @@
 import pyautogui
 import datetime
+import time
 from image_processing_v2 import try_recognize_number, await_image, get_screenshot_with_size, go_to_image, \
     try_go_to_image
 
@@ -36,68 +37,77 @@ def autoparse(how_many_pages, counter=1):
 
 
 def scrollbar_down():
+    timer = time.time()
     try_go_to_image(status_button)
+    pyautogui.click()
     pyautogui.scroll(-7000)
-    print('\t\t ok')
+    print('\t{}s'.format(round(time.time() - timer), 0))
 
 
 def click_search():
+    timer = time.time()
     try_go_to_image(szukaj)
     pyautogui.click()
-    print('\t\t ok')
+    print('\t{}s'.format(round(time.time() - timer), 0))
 
 
 def click_start():
+    timer = time.time()
     isstarted = await_image(start_before, 30)
     if isstarted:
-        go_to_image(start_before)
+        try_go_to_image(start_before)
         pyautogui.click()
-        print('\t\t ok')
+        print('\t{}s'.format(round(time.time() - timer), 0))
     else:
         click_next()
         click_start()
 
 
 def click_next():
+    timer = time.time()
     pyautogui.scroll(-7000)
     try_go_to_image(nastepna)
     pyautogui.click()
-    print('\t\t ok')
+    print('\t{}s'.format(round(time.time() - timer), 0))
 
 
 def click_search_engine():
+    timer = time.time()
     isdone = await_image(start_after)
     if isdone:
-        go_to_image(wyszukiwarka)
+        try_go_to_image(wyszukiwarka)
         pyautogui.click()
-        print('\t\t ok')
+        print('\t{}s'.format(round(time.time() - timer), 0))
     else:
         click_search_engine()
 
 
 def click_back_n_times():
+    timer = time.time()
     screen = get_screenshot_with_size(465, 51, 474, 73)
     n = try_recognize_number(screen) + 1
     try_go_to_image(back)
     pyautogui.click(clicks=n, interval=0.5)
-    print('\t\t x{}'.format(n))
+    print('x{}\t{}s'.format(n, round(time.time() - timer), 0))
 
 
 def check_site():
+    timer = time.time()
     isblueline_visible = await_image(blueline, 10)
     if isblueline_visible:
-        go_to_image(blueline)
+        try_go_to_image(blueline)
         pyautogui.scroll(7000)
-        print('\t\t ok')
+        print('\t{}s'.format(round(time.time() - timer), 0))
     else:
         try_go_to_image(back)
         pyautogui.click()
         check_site()
 
+    timer = time.time()
     is_lista_visible = await_image(lista, 5)
     if is_lista_visible:
-        go_to_image(lista)
-        print('\t\t ok')
+        try_go_to_image(lista)
+        print('\t{}s'.format(round(time.time() - timer), 0))
     else:
         try_go_to_image(back)
         pyautogui.click()
