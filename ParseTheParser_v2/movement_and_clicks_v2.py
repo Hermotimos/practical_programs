@@ -3,19 +3,18 @@ import datetime
 import time
 from image_processing_v2 import try_recognize_number, await_image, try_go_to_image
 
+pyautogui.PAUSE = 0.1
+pyautogui.FAILSAFE = True
+
 status_button = '.\\status_button.png'
 szukaj = '.\\szukaj.png'
-start_before = '.\\start_before.png'
+start_black = '.\\start_black.png'
 nastepna = '.\\nastepna.png'
-start_after = '.\\start_after.png'
+start_grey = '.\\start_grey.png'
 wyszukiwarka = '.\\wyszukiwarka.png'
 blueline = '.\\blueline.png'
 back = '.\\back.png'
 lista = '.\\lista.png'
-
-
-pyautogui.PAUSE = 0.1
-pyautogui.FAILSAFE = True
 
 
 def autoparse(how_many_pages, counter_pages=1):
@@ -24,6 +23,7 @@ def autoparse(how_many_pages, counter_pages=1):
 
     while how_many_pages > 0:
         print('{}'.format(str(counter_pages)))
+
         click_start()
         click_search_engine()
         new_items = click_back_n_times()
@@ -35,37 +35,36 @@ def autoparse(how_many_pages, counter_pages=1):
         counter_pages += 1
         counter_new += new_items
         print('\t'*10, '+{}'.format(counter_new))
-        print('\t'*15, 'TOTAL:\t{}'.format(counter_new))
+        print('\t'*12, 'TOTAL:\t{}'.format(counter_new))
+
     finish_browsing(counter_new)
 
 
 def start_browsing():
-    print('-'*40, '\n')
+    def scrollbar_down():
+        timer = time.time()
+        try_go_to_image(status_button)
+        pyautogui.click()
+        pyautogui.scroll(-7000)
+        print('\t{}s'.format(round(time.time() - timer), 0))
+
+    def click_search():
+        timer = time.time()
+        try_go_to_image(szukaj)
+        pyautogui.click()
+        print('\t{}s'.format(round(time.time() - timer), 0))
+
+    print('-'*20, 'START', '-'*20)
     scrollbar_down()
     click_search()
     print()
 
 
-def scrollbar_down():
-    timer = time.time()
-    try_go_to_image(status_button)
-    pyautogui.click()
-    pyautogui.scroll(-7000)
-    print('\t{}s'.format(round(time.time() - timer), 0))
-
-
-def click_search():
-    timer = time.time()
-    try_go_to_image(szukaj)
-    pyautogui.click()
-    print('\t{}s'.format(round(time.time() - timer), 0))
-
-
 def click_start():
     timer = time.time()
-    isstarted = await_image(start_before, 30)
-    if isstarted:
-        try_go_to_image(start_before)
+    is_start_black_visible = await_image(start_black, 30)
+    if is_start_black_visible:
+        try_go_to_image(start_black)
         pyautogui.click()
         print('\t{}s'.format(round(time.time() - timer), 0))
     else:
@@ -83,8 +82,8 @@ def click_next():
 
 def click_search_engine():
     timer = time.time()
-    isdone = await_image(start_after)
-    if isdone:
+    is_start_grey_visible = await_image(start_grey)
+    if is_start_grey_visible:
         try_go_to_image(wyszukiwarka)
         pyautogui.click()
         print('\t{}s'.format(round(time.time() - timer), 0))
@@ -129,20 +128,13 @@ def actively_check_list_site():
 
 
 def finish_browsing(new_items):
+    def now_str():
+        now = datetime.datetime.now()
+        return now.strftime('%H.%M')
+
+    def save_screenshot():
+        last_page = pyautogui.screenshot()
+        last_page.save('C:\\Users\\Lukasz\\Desktop\\recent__{}.jpg'.format(now_str()))
+
     save_screenshot()
-    prepare_report(new_items)
-
-
-def save_screenshot():
-    last_page = pyautogui.screenshot()
-    last_page.save('C:\\Users\\Lukasz\\Desktop\\recent__{}.jpg'.format(now_str()))
-
-
-def prepare_report(new_items):
-    print("-"*40, "\nFinished: {}\nNew: {}".format(now_str(), new_items))
-
-
-def now_str():
-    now = datetime.datetime.now()
-    nstr = now.strftime('%H.%M')
-    return nstr
+    print('-'*20, 'END', '-'*20, '\nFinished: {}\nNew: {}'.format(now_str(), new_items))
