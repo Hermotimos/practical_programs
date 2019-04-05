@@ -20,9 +20,7 @@ pyautogui.FAILSAFE = True
 
 def autoparse(how_many_pages, counter_pages=1):
     counter_new = 0
-
-    scrollbar_down()
-    click_search()
+    start_browsing()
 
     while how_many_pages > 0:
         print('{}'.format(str(counter_pages)))
@@ -35,8 +33,16 @@ def autoparse(how_many_pages, counter_pages=1):
         how_many_pages -= 1
         counter_pages += 1
         counter_new += new_items
-        print('\t'*15, '+{}'.format(counter_new))
-    finish(counter_new)
+        print('\t'*10, '+{}'.format(counter_new))
+        print('\t'*15, 'TOTAL:\t{}'.format(counter_new))
+    finish_browsing(counter_new)
+
+
+def start_browsing():
+    print('-'*40, '\n')
+    scrollbar_down()
+    click_search()
+    print()
 
 
 def scrollbar_down():
@@ -119,11 +125,21 @@ def check_site():
         check_site()
 
 
-def finish(new_items):
-    last_done = pyautogui.screenshot()
+def finish_browsing(new_items):
+    save_screenshot()
+    prepare_report(new_items)
+
+
+def save_screenshot():
+    last_page = pyautogui.screenshot()
+    last_page.save('C:\\Users\\Lukasz\\Desktop\\recent__{}.jpg'.format(now_str()))
+
+
+def prepare_report(new_items):
+    print("-"*40, "\nFinished: {}\nNew: {}".format(now_str(), new_items))
+
+
+def now_str():
     now = datetime.datetime.now()
-    now_str = str(now).replace(':', '_')
-    last_done.save('C:\\Users\\Lukasz\\Desktop\\recent__{}.jpg'.format(now_str))
-    print("Finished: {}\nNew: {}".format(now, new_items))
-
-
+    nstr = now.strftime('%H.%M')
+    return nstr
