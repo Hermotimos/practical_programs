@@ -43,7 +43,7 @@ def await_image(image_file, seconds=30):
 
 
 def try_go_to_image(image, err_cnt=0):
-    name = image[2:].split('.')[0]
+    name = image[6:].split('.')[0]
     try:
         if err_cnt == 0:
             print('try: {:15} {:3}'.format(name, err_cnt), end='')
