@@ -1,11 +1,9 @@
-import time
 import pyautogui
 from movement_and_clicks_v2 import autoparse
-from begin_v2 import ask_confirm
+from begin_v2 import ask_pages
 
 
-pages = ask_confirm()
-time.sleep(5)
+pages = ask_pages()
 try:
     autoparse(pages)
 except pyautogui.FailSafeException:

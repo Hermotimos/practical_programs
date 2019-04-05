@@ -1,5 +1,4 @@
-
-def ask_confirm():
+def ask_pages():
     confirm = input('\n\n!!! PREPARE YOUR PARSER !!!\n\n'
                     '1. CHOSE TYPE OF SENTENCES TO BROWSE.\n'
                     '2. SET END DATE\n'
@@ -13,4 +12,4 @@ def ask_confirm():
         return confirm
     except Exception as e:
         print(e)
-        return ask_confirm()
+        return ask_pages()
