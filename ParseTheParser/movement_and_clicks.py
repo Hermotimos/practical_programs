@@ -28,7 +28,7 @@ def click_start():
 
 
 def click_search_engine():
-    isdone = await_image('start_after.png')
+    isdone = await_image('start_grey.png')
     if isdone:
         pyautogui.moveTo(48, 116, duration=0.5)
         pyautogui.click()
