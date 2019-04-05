@@ -1,6 +1,7 @@
 import pyautogui
 import datetime
-from image_processing_v2 import try_recognize_number, await_image, go_to_image, try_go_to_image, get_screenshot_with_size # todo remove
+from image_processing_v2 import try_recognize_number, await_image, get_screenshot_with_size, go_to_image, \
+    try_go_to_image
 
 status_button = '.\\status_button.png'
 szukaj = '.\\szukaj.png'
@@ -68,8 +69,8 @@ def click_search_engine():
 
 def click_back_n_times():
     """ Checks number at specific location (n); adds 1 due to feature's design; goes-back n+1 times"""
-    # screen = get_screenshot_with_size(465, 51, 474, 73)                                           # todo remove line
-    n = try_recognize_number(screen) + 1                                                            # todo remove arg
+    screen = get_screenshot_with_size(465, 51, 474, 73)
+    n = try_recognize_number(screen) + 1
     try_go_to_image(back)
     pyautogui.click(clicks=n, interval=0.5)
 
@@ -100,4 +101,4 @@ def finish():
     last_done.save('C:\\Users\\Lukasz\\Desktop\\recent__{}.jpg'.format(now_str))
     print("Finished: {}".format(now))
 
-print('hhh')
+

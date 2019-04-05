@@ -15,7 +15,25 @@ nowe_7 = '.\\nowe_7.png'
 nowe_8 = '.\\nowe_8.png'
 nowe_9 = '.\\nowe_9.png'
 nowe_10 = '.\\nowe_10.png'
-numbers_imgs = (nowe_0, nowe_1, nowe_2, nowe_3, nowe_4, nowe_5, nowe_6, nowe_7, nowe_8, nowe_9, nowe_10)
+
+
+def get_screenshot_with_size(up_from_left=0, up_from_top=0, d_from_left=1920, d_from_top=1080):
+    screenshot = pyautogui.screenshot(region=(up_from_left, up_from_top, d_from_left, d_from_top))
+    width = d_from_left - up_from_left
+    height = d_from_top - up_from_top
+    return screenshot, (width, height)
+
+
+def get_image_data(image_with_size=()):
+    """ returns dict ((pixel_coordinates): (rgb_info), ...)
+    ex. {(0, 0): (240, 240, 240), (0, 1): (240, 240, 240), ...} """
+    width, height = image_with_size[1]
+    img_data = {}
+    for wdth_pix in range(width+1):
+        for lngth_pix in range(height+1):
+            val = image_with_size[0].getpixel((wdth_pix, lngth_pix))
+            img_data[(wdth_pix, lngth_pix)] = val
+    return img_data
 
 
 def try_recognize_number(screenshot):
@@ -24,37 +42,16 @@ def try_recognize_number(screenshot):
         return num
     else:
         now = datetime.datetime.now()
-        print("{}: Number at position 'Nowe' not recognized. "
-              "\nTry to determine the cause for future development.".format(now))
+        print("{}: Number at position 'Nowe' not recognized.".format(now))
         return num
 
 
-def recognize_number():
+def recognize_number(screenshot):
     recognized_num = False
-    for num, num_img in enumerate(numbers_imgs):
-        if pyautogui.locateOnScreen:
-            recognized_num = num
+    for number in range(0, 11):
+        if get_image_data(screenshot) == NUMBERS_0_10[number]:
+            recognized_num = number
     return recognized_num
-
-
-
-# def get_screenshot_with_size(up_from_left=0, up_from_top=0, d_from_left=1920, d_from_top=1080):
-#     screenshot = pyautogui.screenshot(region=(up_from_left, up_from_top, d_from_left, d_from_top))
-#     width = d_from_left - up_from_left
-#     height = d_from_top - up_from_top
-#     return screenshot, (width, height)
-#
-#
-# def get_image_data(image_with_size=()):
-#     """ returns dict ((pixel_coordinates): (rgb_info), ...)
-#     ex. {(0, 0): (240, 240, 240), (0, 1): (240, 240, 240), ...} """
-#     width, height = image_with_size[1]
-#     img_data = {}
-#     for wdth_pix in range(width+1):
-#         for lngth_pix in range(height+1):
-#             val = image_with_size[0].getpixel((wdth_pix, lngth_pix))
-#             img_data[(wdth_pix, lngth_pix)] = val
-#     return img_data
 
 
 def await_image(image_file, seconds=30):
@@ -66,6 +63,7 @@ def await_image(image_file, seconds=30):
 
 
 def try_go_to_image(image):
+    print_info(image)
     try:
         go_to_image(image)
     except TypeError:
@@ -76,6 +74,13 @@ def go_to_image(image):
     location = pyautogui.locateOnScreen(image)
     center = pyautogui.center(location)
     pyautogui.moveTo(center[0], center[1], duration=0.5)
+
+
+def print_info(image, counter=[0]):
+    if image == '.\\status_button.png':
+        counter[0] += 1
+        print('Page {}'.format(str(counter)))
+    print(image[2:].split('.')[0], '\t')
 
 
 # TESTS
@@ -94,5 +99,3 @@ def go_to_image(image):
 # print(get_image_data(screenshot))
 
 print(pyautogui.locateOnScreen('.\\status_button.png'))
-print(pyautogui.locateOnScreen('.\\nowe_0.png'))
-print(pyautogui.locateOnScreen('.\\nowe_1.png'))
