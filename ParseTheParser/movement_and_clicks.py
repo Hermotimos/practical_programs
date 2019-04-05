@@ -28,7 +28,7 @@ def click_start():
 
 
 def click_search_engine():
-    isdone = await_image('start_grey.png')
+    isdone = await_image('IMG_START_GREY.png')
     if isdone:
         pyautogui.moveTo(48, 116, duration=0.5)
         pyautogui.click()
@@ -39,7 +39,7 @@ def click_search_engine():
 
 def click_back_n_times():
     screen = get_screenshot_with_size(465, 51, 474, 73)     # screenshot of 'Nowe' value
-    n = recognize_number(screen) + 1                    # adding one for basal 1 back click
+    n = recognize_number(screen) + 1                    # adding one for basal 1 IMG_BACK click
     pyautogui.moveTo(1785, 142, duration=0.5)
     pyautogui.click(clicks=n, interval=0.5)
 
@@ -58,7 +58,7 @@ def check_site():
 
 def click_next():
     pyautogui.scroll(-7000)
-    location = pyautogui.locateOnScreen('nastepna.png')
+    location = pyautogui.locateOnScreen('IMG_NASTEPNA.png')
     center = pyautogui.center(location)
     pyautogui.moveTo(center[0], center[1], duration=0.5)
     pyautogui.click()
