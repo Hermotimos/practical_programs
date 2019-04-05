@@ -22,7 +22,7 @@ def recognize_number(guess=0):
     except AssertionError:
         guess += 1
         if guess < 11:
-            recognize_number(guess)
+            return recognize_number(guess)
         else:
             now = datetime.datetime.now()
             print('{}: Number at position "Nowe" not recognized'.format(now.strftime('%H:%M:%S')))
