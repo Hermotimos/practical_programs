@@ -6,6 +6,8 @@ from image_processing_v2 import try_recognize_number, await_image, try_go_to_ima
 pyautogui.PAUSE = 0.1
 pyautogui.FAILSAFE = True
 
+
+
 IMG_STATUS = '.\\IMG_STATUS.png'
 IMG_SZUKAJ = '.\\IMG_SZUKAJ.png'
 IMG_START_BLACK = '.\\IMG_START_BLACK.png'
@@ -40,7 +42,37 @@ def autoparse(how_many_pages, counter_pages=1):
     finish_browsing(counter_new)
 
 
+IMG_HOMEPAGE = '.\\IMG_HOMEPAGE.png'
+IMG_ZTEZA = '.\\IMG_ZTEZA.png'
+IMG_ZUZASAD = '.\\IMG_ZUZASAD.png'
+IMG_WYROK = '.\\IMG_WYROK.png'
+IMG_NROSTAT = '.\\IMG_NROSTAT.png'
+IMG_RODZAJ = '.\\IMG_RODZAJ.png'
 
+# todo = first function waits for home_page sign and clicks it
+
+
+def correct_settings():
+    timer = time.time()
+    try_go_to_image(IMG_HOMEPAGE)
+    pyautogui.click()
+
+    is_zteza_none = await_image(IMG_ZTEZA, 1)
+    if is_zteza_none:
+        try_go_to_image(IMG_ZTEZA)
+        pyautogui.move(90, 0)
+        pyautogui.click()
+
+    is_zuzasad_none = await_image(IMG_ZUZASAD, 1)
+    if is_zuzasad_none:
+        try_go_to_image(IMG_ZUZASAD)
+        pyautogui.move(30, 0)
+        pyautogui.click()
+
+    print('\t{}s'.format(round(time.time() - timer), 0))
+
+
+correct_settings()
 
 
 def start_browsing():
