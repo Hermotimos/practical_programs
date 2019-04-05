@@ -18,7 +18,7 @@ nowe_numbers = (nowe_0, nowe_1, nowe_2, nowe_3, nowe_4, nowe_5, nowe_6, nowe_7, 
 def try_recognize_number():
     num = recognize_number()
     try:
-        assert -1 > num > 11
+        assert -1 < num < 11
         return num
     except Exception as e:
         now = datetime.datetime.now()
