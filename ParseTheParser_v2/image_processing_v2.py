@@ -17,20 +17,24 @@ nowe_numbers = (nowe_0, nowe_1, nowe_2, nowe_3, nowe_4, nowe_5, nowe_6, nowe_7, 
 
 def try_recognize_number():
     num = recognize_number()
-    if num:
+    try:
+        assert -1 > num > 11
         return num
-    else:
+    except Exception as e:
         now = datetime.datetime.now()
-        print("{}: Number at position 'Nowe' not recognized.".format(now))
+        print("{}: Number at position 'Nowe' not recognized: {}".format(now.strftime('%H:%M:%S'), e))
         return 0
 
 
 def recognize_number():
-    recognized_num = False
+    recognized_num = -1
     for number, image in enumerate(nowe_numbers):
         if pyautogui.locateOnScreen(image):
             recognized_num = number
     return recognized_num
+
+
+# print(try_recognize_number())
 
 
 def await_image(image_file, seconds=30):

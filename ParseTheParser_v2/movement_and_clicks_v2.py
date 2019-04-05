@@ -18,21 +18,25 @@ pyautogui.PAUSE = 0.1
 pyautogui.FAILSAFE = True
 
 
-def autoparse(how_many_pages, counter=1):
+def autoparse(how_many_pages, counter_pages=1):
+    counter_new = 0
+
     scrollbar_down()
     click_search()
 
     while how_many_pages > 0:
-        print('{}'.format(str(counter)))
+        print('{}'.format(str(counter_pages)))
         click_start()
         click_search_engine()
-        click_back_n_times()
+        new_items = click_back_n_times()
         check_site()
         click_next()
 
         how_many_pages -= 1
-        counter += 1
-    finish()
+        counter_pages += 1
+        counter_new += new_items
+        print('\t'*15, '+{}'.format(counter_new))
+    finish(counter_new)
 
 
 def scrollbar_down():
@@ -83,10 +87,13 @@ def click_search_engine():
 
 def click_back_n_times():
     timer = time.time()
-    n = try_recognize_number() + 1
+    new = try_recognize_number()
+    n_times = new + 1
+    print('back: x{}'.format(n_times))
     try_go_to_image(back)
-    pyautogui.click(clicks=n, interval=0.5)
-    print('x{}\t{}s'.format(n, round(time.time() - timer), 0))
+    pyautogui.click(clicks=n_times, interval=0.5)
+    print('\t{}s'.format(round(time.time() - timer), 0))
+    return new
 
 
 def check_site():
@@ -112,11 +119,11 @@ def check_site():
         check_site()
 
 
-def finish():
+def finish(new_items):
     last_done = pyautogui.screenshot()
     now = datetime.datetime.now()
     now_str = str(now).replace(':', '_')
     last_done.save('C:\\Users\\Lukasz\\Desktop\\recent__{}.jpg'.format(now_str))
-    print("Finished: {}".format(now))
+    print("Finished: {}\nNew: {}".format(now, new_items))
 
 
