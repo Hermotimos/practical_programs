@@ -12,3 +12,5 @@ def ask_pages():
     except Exception as e:
         print('ERROR:', e)
         return ask_pages()
+
+# todo: ask_correction, ask_fullscreen
