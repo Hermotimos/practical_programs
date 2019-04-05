@@ -27,7 +27,8 @@ def autoparse(how_many_pages, counter_pages=1):
         click_start()
         click_search_engine()
         new_items = click_back_n_times()
-        check_site()
+        actively_check_blueline()
+        actively_check_list_site()
         click_next()
 
         how_many_pages -= 1
@@ -102,7 +103,7 @@ def click_back_n_times():
     return new
 
 
-def check_site():
+def actively_check_blueline():
     timer = time.time()
     isblueline_visible = await_image(blueline, 10)
     if isblueline_visible:
@@ -112,8 +113,10 @@ def check_site():
     else:
         try_go_to_image(back)
         pyautogui.click()
-        check_site()
+        actively_check_blueline()
 
+
+def actively_check_list_site():
     timer = time.time()
     is_lista_visible = await_image(lista, 5)
     if is_lista_visible:
@@ -122,7 +125,7 @@ def check_site():
     else:
         try_go_to_image(back)
         pyautogui.click()
-        check_site()
+        actively_check_list_site()
 
 
 def finish_browsing(new_items):

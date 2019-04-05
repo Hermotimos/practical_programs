@@ -34,9 +34,6 @@ def recognize_number():
     return recognized_num
 
 
-# print(try_recognize_number())
-
-
 def await_image(image_file, seconds=30):
     isfound = pyautogui.locateOnScreen(image_file, minSearchTime=seconds)
     if isfound:
