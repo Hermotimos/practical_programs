@@ -1,10 +1,5 @@
 def ask_pages():
-    confirm = input('\n!!! PREPARE YOUR PARSER !!!\n\n'
-                    '1. CHOSE TYPE OF SENTENCES TO BROWSE.\n'
-                    '2. SET END DATE\n'
-                    '3. SET "without thesis" AND "with justification" fields.\n'
-                    '4. SET NUMBER OF LAST PAGE = 1\n\n'
-                    'Enter number of pages to browse and confirm by ENTER:\n')
+    confirm = input('Enter number of pages to browse and confirm by ENTER:\n')
     try:
         confirm = int(confirm)
         assert confirm > 0
@@ -13,4 +8,21 @@ def ask_pages():
         print('ERROR:', e)
         return ask_pages()
 
-# todo: ask_correction, ask_fullscreen
+
+def ask_correct():
+    return yes_or_no('Would you like to automatically check start settings and correct if wrong (y/n) ?')
+
+
+def ask_fullscreen():
+    return yes_or_no('Would you like to switch to full screen for better reliability (y/n) ?')
+
+
+def yes_or_no(prompt):
+    answer = input(prompt)
+    if answer == 'y':
+        return True
+    elif answer == 'n':
+        return False
+    else:
+        print("Wrong value entered. Please choose again.\n")
+        return yes_or_no(prompt)
