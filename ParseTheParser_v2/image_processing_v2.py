@@ -63,7 +63,6 @@ def await_image(image_file, seconds=30):
 
 
 def try_go_to_image(image):
-    print_info(image)
     try:
         go_to_image(image)
     except TypeError:
@@ -71,16 +70,18 @@ def try_go_to_image(image):
 
 
 def go_to_image(image):
+    print_info(image)
     location = pyautogui.locateOnScreen(image)
     center = pyautogui.center(location)
     pyautogui.moveTo(center[0], center[1], duration=0.5)
 
 
-def print_info(image, counter=[0]):
-    if image == '.\\status_button.png':
-        counter[0] += 1
-        print('Page {}'.format(str(counter)))
-    print(image[2:].split('.')[0], '\t')
+def print_info(image):
+    print('{}{:15} '.format('try: ', image[2:].split('.')[0]), " ", end='')
+
+
+
+
 
 
 # TESTS

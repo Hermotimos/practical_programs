@@ -18,28 +18,33 @@ pyautogui.PAUSE = 0.1
 pyautogui.FAILSAFE = True
 
 
-def autoparse(how_many_pages):
+def autoparse(how_many_pages, counter=1):
     scrollbar_down()
     click_search()
 
     while how_many_pages > 0:
+        print('{}'.format(str(counter)))
         click_start()
         click_search_engine()
         click_back_n_times()
         check_site()
         click_next()
+
         how_many_pages -= 1
+        counter += 1
     finish()
 
 
 def scrollbar_down():
     try_go_to_image(status_button)
     pyautogui.scroll(-7000)
+    print('\t\t ok')
 
 
 def click_search():
     try_go_to_image(szukaj)
     pyautogui.click()
+    print('\t\t ok')
 
 
 def click_start():
@@ -47,6 +52,7 @@ def click_start():
     if isstarted:
         go_to_image(start_before)
         pyautogui.click()
+        print('\t\t ok')
     else:
         click_next()
         click_start()
@@ -56,6 +62,7 @@ def click_next():
     pyautogui.scroll(-7000)
     try_go_to_image(nastepna)
     pyautogui.click()
+    print('\t\t ok')
 
 
 def click_search_engine():
@@ -63,16 +70,17 @@ def click_search_engine():
     if isdone:
         go_to_image(wyszukiwarka)
         pyautogui.click()
+        print('\t\t ok')
     else:
         click_search_engine()
 
 
 def click_back_n_times():
-    """ Checks number at specific location (n); adds 1 due to feature's design; goes-back n+1 times"""
     screen = get_screenshot_with_size(465, 51, 474, 73)
     n = try_recognize_number(screen) + 1
     try_go_to_image(back)
     pyautogui.click(clicks=n, interval=0.5)
+    print('\t\t x{}'.format(n))
 
 
 def check_site():
@@ -80,6 +88,7 @@ def check_site():
     if isblueline_visible:
         go_to_image(blueline)
         pyautogui.scroll(7000)
+        print('\t\t ok')
     else:
         try_go_to_image(back)
         pyautogui.click()
@@ -87,7 +96,8 @@ def check_site():
 
     is_lista_visible = await_image(lista, 5)
     if is_lista_visible:
-        pass
+        go_to_image(lista)
+        print('\t\t ok')
     else:
         try_go_to_image(back)
         pyautogui.click()
