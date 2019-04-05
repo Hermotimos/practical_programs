@@ -1,8 +1,7 @@
 import pyautogui
 import datetime
 import time
-from image_processing_v2 import try_recognize_number, await_image, get_screenshot_with_size, go_to_image, \
-    try_go_to_image
+from image_processing_v2 import try_recognize_number, await_image, try_go_to_image
 
 status_button = '.\\status_button.png'
 szukaj = '.\\szukaj.png'
@@ -84,8 +83,7 @@ def click_search_engine():
 
 def click_back_n_times():
     timer = time.time()
-    screen = get_screenshot_with_size(465, 51, 474, 73)
-    n = try_recognize_number(screen) + 1
+    n = try_recognize_number() + 1
     try_go_to_image(back)
     pyautogui.click(clicks=n, interval=0.5)
     print('x{}\t{}s'.format(n, round(time.time() - timer), 0))
