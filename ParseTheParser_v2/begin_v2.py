@@ -27,3 +27,6 @@ def yes_or_no(prompt):
     else:
         print("Wrong value entered. Please choose again.\n")
         return yes_or_no(prompt)
+
+
+# todo: ask if start from start page or continue from current site?
