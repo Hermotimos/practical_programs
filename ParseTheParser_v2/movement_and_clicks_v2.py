@@ -127,3 +127,8 @@ def finish_browsing(new_items):
 
     save_screenshot()
     print('-'*20, 'END', '-'*20, '\nFinished: {}\nNew: {}'.format(now_str(), new_items))
+
+
+def continue_browsing():
+    actively_check_list_site()
+    click_next()
