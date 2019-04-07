@@ -1,11 +1,11 @@
 import pyautogui
-import datetime
 import time
 from image_processing_v2 import try_click_image, recognize_number
 
 pyautogui.PAUSE = 0.1
 pyautogui.FAILSAFE = True
 
+IMG_APPLICATION = '.\\images\\IMG_APPLICATION.png'
 IMG_HOMEPAGE = '.\\images\\IMG_HOMEPAGE.png'
 IMG_ZTEZA = '.\\images\\IMG_ZTEZA.png'
 IMG_ZUZASAD = '.\\images\\IMG_ZUZASAD.png'
@@ -26,14 +26,14 @@ IMG_LISTA = '.\\images\\IMG_LISTA.png'
 
 
 # ELEMENTS OF start_browsing()
-def set_strony():
-    t = time.time()
-    try_click_image(IMG_NROSTAT)
-    pyautogui.move(0, 20)
-    pyautogui.click()
-    pyautogui.press('delete', presses=5)
-    pyautogui.typewrite('1')
-    print('\t{}s'.format(round(time.time() - t), 0))
+def determine_startpoint():
+    if pyautogui.locateOnScreen(IMG_STATUS, 1):
+        return True
+    elif pyautogui.locateOnScreen(IMG_LISTA, 1):
+        return False
+    else:
+        determine_startpoint()
+
 
 def scrolldown_startpage():
     t = time.time()
@@ -41,9 +41,20 @@ def scrolldown_startpage():
     pyautogui.scroll(-7000)
     print('\t{}s'.format(round(time.time() - t), 0))
 
+
 def click_search():
     t = time.time()
     try_click_image(IMG_SZUKAJ)
+    print('\t{}s'.format(round(time.time() - t), 0))
+
+
+def set_strony():
+    t = time.time()
+    try_click_image(IMG_NROSTAT)
+    pyautogui.move(0, 20)
+    pyautogui.click()
+    pyautogui.press('delete', presses=5)
+    pyautogui.typewrite('1')
     print('\t{}s'.format(round(time.time() - t), 0))
 
 

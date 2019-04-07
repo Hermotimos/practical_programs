@@ -1,14 +1,19 @@
 from movement_and_clicks_v2 import *
+import datetime
 
 
 def start_browsing():
+    if determine_startpoint():
+        scrolldown_startpage()
+        click_search()
+    else:
+        pass
     set_strony()
-    scrolldown_startpage()
-    click_search()
-    print()
 
 
-def browse_one_page():
+def browse_pages(pages_to_browse):
+
+    def browse_one_page():
         actively_check_list_site()
         click_start()
         switch_to_search_window()
@@ -17,8 +22,6 @@ def browse_one_page():
         click_next()
         return new_items
 
-
-def browse_pages(pages_to_browse):
     new_count = 0
     pages_browsed = 0
 
