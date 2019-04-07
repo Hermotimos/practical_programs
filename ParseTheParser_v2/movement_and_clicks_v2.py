@@ -25,38 +25,29 @@ IMG_BACK = '.\\images\\IMG_BACK.png'
 IMG_LISTA = '.\\images\\IMG_LISTA.png'
 
 
-def start_browsing():
+# ELEMENTS OF start_browsing()
+def set_strony():
+    t = time.time()
+    try_click_image(IMG_NROSTAT)
+    pyautogui.move(0, 20)
+    pyautogui.click()
+    pyautogui.press('delete', presses=5)
+    pyautogui.typewrite('1')
+    print('\t{}s'.format(round(time.time() - t), 0))
 
-    def set_strony():
-        t = time.time()
-        try_click_image(IMG_NROSTAT)
-        pyautogui.move(0, 20)
-        pyautogui.click()
-        pyautogui.press('delete', presses=5)
-        pyautogui.typewrite('1')
-        print('\t{}s'.format(round(time.time() - t), 0))
+def scrolldown_startpage():
+    t = time.time()
+    try_click_image(IMG_STATUS)
+    pyautogui.scroll(-7000)
+    print('\t{}s'.format(round(time.time() - t), 0))
 
-    def scrolldown_startpage():
-        t = time.time()
-        try_click_image(IMG_STATUS)
-        pyautogui.scroll(-7000)
-        print('\t{}s'.format(round(time.time() - t), 0))
-
-    def click_search():
-        t = time.time()
-        try_click_image(IMG_SZUKAJ)
-        print('\t{}s'.format(round(time.time() - t), 0))
-
-    set_strony()
-    scrolldown_startpage()
-    click_search()
-    print()
+def click_search():
+    t = time.time()
+    try_click_image(IMG_SZUKAJ)
+    print('\t{}s'.format(round(time.time() - t), 0))
 
 
-
-
-
-
+# ELEMENTS of browse_pages()
 def click_start():
     t = time.time()
     if pyautogui.locateOnScreen(IMG_START_BLACK, 30):
@@ -112,23 +103,11 @@ def click_next():
     print('\t{}s'.format(round(time.time() - t), 0))
 
 
-def finish_browsing(new_items):
-    def now_str():
-        now = datetime.datetime.now()
-        return now.strftime('%H.%M')
-
-    def save_screenshot():
-        last_page = pyautogui.screenshot()
-        last_page.save('C:\\Users\\Lukasz\\Desktop\\recent__{}.jpg'.format(now_str()))
-
-    save_screenshot()
-    print('-'*20, 'END', '-'*20, '\nFinished: {}\nNew: {}'.format(now_str(), new_items))
-
-
-def continue_browsing():
-    actively_check_list_site()
-    click_next()
-
-
-def do_fullscreen():
-    pass        # todo
+#
+# def continue_browsing():
+#     actively_check_list_site()
+#     click_next()
+#
+#
+# def do_fullscreen():
+#     pass        # todo

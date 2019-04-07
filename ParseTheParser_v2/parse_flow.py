@@ -1,6 +1,13 @@
 from movement_and_clicks_v2 import *
 
 
+def start_browsing():
+    set_strony()
+    scrolldown_startpage()
+    click_search()
+    print()
+
+
 def browse_one_page():
         actively_check_list_site()
         click_start()
@@ -23,15 +30,12 @@ def browse_pages(pages_to_browse):
         new_count += new_per_page
 
         pages_to_browse -= 1
-        print('\t' * 10, '+{} [SUM TOTAL: {}]'.format(new_per_page, new_count))
+        print('\t' * 15, '+{}/[{}]'.format(new_per_page, new_count))
     return new_count
 
 
-start_browsing()
-
-new_sum = browse_pages(4)
-
-finish_browsing(new_sum)
-
-
-
+def finish_browsing(new_items):
+    now = datetime.datetime.now().strftime('%H.%M')
+    last_page = pyautogui.screenshot()
+    last_page.save('C:\\Users\\Lukasz\\Desktop\\recent__{}.jpg'.format(now))
+    print('-'*20, 'END', '-'*20, '\nFinished: {}\nNew: {}'.format(now, new_items))
