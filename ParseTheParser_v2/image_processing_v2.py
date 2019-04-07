@@ -1,17 +1,17 @@
 import pyautogui
 import datetime
 
-nowe_0 = '.\\nowe_0.png'
-nowe_1 = '.\\nowe_1.png'
-nowe_2 = '.\\nowe_2.png'
-nowe_3 = '.\\nowe_3.png'
-nowe_4 = '.\\nowe_4.png'
-nowe_5 = '.\\nowe_5.png'
-nowe_6 = '.\\nowe_6.png'
-nowe_7 = '.\\nowe_7.png'
-nowe_8 = '.\\nowe_8.png'
-nowe_9 = '.\\nowe_9.png'
-nowe_10 = '.\\nowe_10.png'
+nowe_0 = '.\\images\\nowe_0.png'
+nowe_1 = '.\\images\\nowe_1.png'
+nowe_2 = '.\\images\\nowe_2.png'
+nowe_3 = '.\\images\\nowe_3.png'
+nowe_4 = '.\\images\\nowe_4.png'
+nowe_5 = '.\\images\\nowe_5.png'
+nowe_6 = '.\\images\\nowe_6.png'
+nowe_7 = '.\\images\\nowe_7.png'
+nowe_8 = '.\\images\\nowe_8.png'
+nowe_9 = '.\\images\\nowe_9.png'
+nowe_10 = '.\\images\\nowe_10.png'
 nowe_numbers = (nowe_0, nowe_1, nowe_2, nowe_3, nowe_4, nowe_5, nowe_6, nowe_7, nowe_8, nowe_9, nowe_10)
 
 
