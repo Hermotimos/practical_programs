@@ -1,6 +1,6 @@
 import pyautogui
-from movement_and_clicks_v2 import autoparse
-from begin_v2 import ask_pages, ask_correct, ask_fullscreen
+from parse_flow import autoparse
+from settings import ask_pages, ask_correct, ask_fullscreen
 
 pages = ask_pages()
 if_correct = ask_correct()
