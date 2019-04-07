@@ -13,7 +13,7 @@ def main_flow(pages_to_browse):
         new_sum = browse_pages(num_pages)
         finish_browsing(new_sum)
     except RecursionError:
-        print('PROGRAM RECALIBRATION')
+        print('\nPROGRAM RECALIBRATION')
         main_flow(num_pages)
     except pyautogui.FailSafeException:
         now = datetime.datetime.now().strftime('%H:%M:%S')

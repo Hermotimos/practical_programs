@@ -120,9 +120,9 @@ def actively_check_list_site():                             # todo rethink this 
 def click_next():
     t = time.time()
     pyautogui.scroll(-7000)
-    if pyautogui.locateOnScreen(IMG_NASTEPNA, 5):
+    if pyautogui.locateOnScreen(IMG_NASTEPNA, 2):
         try_click_image(IMG_NASTEPNA)
-    elif pyautogui.locateOnScreen(IMG_NASTEPNA_2, 5):
+    elif pyautogui.locateOnScreen(IMG_NASTEPNA_2, 2):
         try_click_image(IMG_NASTEPNA_2)
     else:
         click_next()
