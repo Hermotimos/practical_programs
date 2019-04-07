@@ -21,4 +21,15 @@ def yes_or_no(prompt):
         return yes_or_no(prompt)
 
 
+def ask_shutdown():
+    choice = input("Choose shutdown mode after program finishes:\nshutdown - s\nhibernation - h\nnone - any key\n")
+    mode = ''
+    if choice == 's':
+        mode = "shutdown /s /t 1"
+    elif choice == 'h':
+        mode = "shutdown /h"
+    return mode
+
+
+
 # todo: ask if start from start page or continue from current site?
