@@ -1,11 +1,11 @@
 import pyautogui
 from parse_flow import autoparse
-from settings import ask_pages, ask_correct, ask_fullscreen
+from settings import ask_pages, ask_default_start, ask_fullscreen
 
 pages = ask_pages()
-if_correct = ask_correct()
+if_default = ask_default_start()
 if_fullscreen = ask_fullscreen()
 try:
-    autoparse(pages, if_correct, if_fullscreen)
+    autoparse(pages, if_default, if_fullscreen)
 except pyautogui.FailSafeException:
     print("FAILSAFE-ESCAPED.")

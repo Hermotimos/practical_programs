@@ -10,12 +10,12 @@ def ask_pages():
         return ask_pages()
 
 
-def ask_correct():
-    return yes_or_no('Would you like to automatically check start settings and correct if wrong (y/n) ?\n')
+def ask_default_start():
+    return yes_or_no('Would you like to use default start settings (y/n)?\n')
 
 
 def ask_fullscreen():
-    return yes_or_no('Would you like to switch to full screen for better reliability (y/n) ?\n')
+    return yes_or_no('Would you like to switch to full screen for better reliability (y/n)?\n')
 
 
 def yes_or_no(prompt):

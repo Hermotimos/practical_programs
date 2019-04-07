@@ -1,14 +1,14 @@
 from movement_and_clicks_v2 import *
 
 
-def autoparse(pages_to_browse, correction=False, fullscreen=False):
+def autoparse(pages_to_browse, default_start=False, fullscreen=False):
     page_cnt = 0
     new_cnt = 0
 
     print('-' * 20, 'START', '-' * 20)
 
-    if correction:
-        correct_settings()
+    if default_start:
+        use_default_start()
     if fullscreen:
         do_fullscreen()
     start_browsing()
