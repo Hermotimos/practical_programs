@@ -59,6 +59,13 @@ def set_strony():
 
 
 # ELEMENTS of browse_pages()
+def await_blueline():
+    time.sleep(1)
+    if pyautogui.locateOnScreen(IMG_BLUELINE, 60):
+        pass
+    else:
+        try_click_image(IMG_BACK)
+
 def click_start():
     t = time.time()
     if pyautogui.locateOnScreen(IMG_START_BLACK, 30):

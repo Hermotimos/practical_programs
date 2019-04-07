@@ -38,7 +38,7 @@ def try_click_image(image_file, err_cnt=0, clicks=1, interval=0.0):
         click_image(image_file, clicks=clicks, interval=interval)
     except TypeError:
         err_cnt += 1
-        print('{}do: {:20} {:3}'.format('\b'*39, name, err_cnt), end='')
+        print('{}[{}] do: {:20} {:5}'.format('\b'*100, now, name, err_cnt), end='')
         try_click_image(image_file, err_cnt, clicks=clicks, interval=interval)
 
 

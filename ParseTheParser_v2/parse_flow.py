@@ -14,6 +14,8 @@ def start_browsing():
 def browse_pages(pages_to_browse):
 
     def browse_one_page():
+        # todo what goes before click_start is for verification... it failed a lot in the past, so watch it
+        await_blueline()
         actively_check_list_site()
         click_start()
         switch_to_search_window()
