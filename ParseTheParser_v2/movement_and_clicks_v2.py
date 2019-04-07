@@ -7,14 +7,7 @@ sys.setrecursionlimit(100)
 pyautogui.PAUSE = 0.1
 pyautogui.FAILSAFE = True
 
-IMG_APPLICATION = '.\\images\\IMG_APPLICATION.png'
-IMG_HOMEPAGE = '.\\images\\IMG_HOMEPAGE.png'
-IMG_ZTEZA = '.\\images\\IMG_ZTEZA.png'
-IMG_ZUZASAD = '.\\images\\IMG_ZUZASAD.png'
-IMG_RODZAJ = '.\\images\\IMG_RODZAJ.png'
-IMG_WYROK = '.\\images\\IMG_WYROK.png'
 IMG_NROSTAT = '.\\images\\IMG_NROSTAT.png'
-
 IMG_STATUS = '.\\images\\IMG_STATUS.png'
 IMG_SZUKAJ = '.\\images\\IMG_SZUKAJ.png'
 IMG_START_BLACK = '.\\images\\IMG_START_BLACK.png'
@@ -68,6 +61,7 @@ def await_blueline():
         pass
     else:
         try_click_image(IMG_BACK)
+
 
 def click_start():
     t = time.time()
