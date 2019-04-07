@@ -25,17 +25,18 @@ def browse_pages(pages_to_browse):
         return new_items
 
     new_count = 0
-    pages_browsed = 0
+    pages_browsed = 1
 
     while pages_to_browse > 0:
-        pages_browsed += 1
         print('{}'.format(str(pages_browsed)))
 
         new_per_page = browse_one_page()
-        new_count += new_per_page
 
+        new_count += new_per_page
+        pages_browsed += 1
         pages_to_browse -= 1
         print('\t' * 15, '+{}/[{}]'.format(new_per_page, new_count))
+
     return new_count
 
 
