@@ -19,6 +19,7 @@ IMG_START_BLACK = '.\\IMG_START_BLACK.png'
 IMG_NASTEPNA = '.\\IMG_NASTEPNA.png'
 IMG_START_GREY = '.\\IMG_START_GREY.png'
 IMG_WYSZUKIWARKA = '.\\IMG_WYSZUKIWARKA.png'
+IMG_WYSZUKIWARKA_2 = '.\\WYSZUKIWARKA_2.png'
 IMG_BLUELINE = '.\\IMG_BLUELINE.png'
 IMG_BACK = '.\\IMG_BACK.png'
 IMG_LISTA = '.\\IMG_LISTA.png'
@@ -52,6 +53,8 @@ def switch_to_search_window():
     if pyautogui.locateOnScreen(IMG_START_GREY, 60):
         try_click_image(IMG_WYSZUKIWARKA)
         print('\t{}s'.format(round(time.time() - t), 0))
+    elif pyautogui.locateOnScreen(IMG_WYSZUKIWARKA_2, 1):
+        pass
     else:
         switch_to_search_window()
 
@@ -85,8 +88,6 @@ def actively_check_list_site():                             # todo rethink this 
 
 def click_next():
     t = time.time()
-    try_click_image(IMG_WYSZUKIWARKA)
-    pyautogui.move(0, 100)
     pyautogui.scroll(-7000)
     try_click_image(IMG_NASTEPNA)
     print('\t{}s'.format(round(time.time() - t), 0))
