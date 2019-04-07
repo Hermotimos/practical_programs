@@ -1,7 +1,9 @@
+import sys
 import pyautogui
 import time
 from image_processing_v2 import try_click_image, recognize_number
 
+sys.setrecursionlimit(100)
 pyautogui.PAUSE = 0.1
 pyautogui.FAILSAFE = True
 
@@ -17,6 +19,7 @@ IMG_STATUS = '.\\images\\IMG_STATUS.png'
 IMG_SZUKAJ = '.\\images\\IMG_SZUKAJ.png'
 IMG_START_BLACK = '.\\images\\IMG_START_BLACK.png'
 IMG_NASTEPNA = '.\\images\\IMG_NASTEPNA.png'
+IMG_NASTEPNA_2 = '.\\images\\IMG_NASTEPNA_2.png'
 IMG_START_GREY = '.\\images\\IMG_START_GREY.png'
 IMG_WYSZUKIWARKA = '.\\images\\IMG_WYSZUKIWARKA.png'
 IMG_WYSZUKIWARKA_2 = '.\\images\\IMG_WYSZUKIWARKA_2.png'
@@ -117,11 +120,15 @@ def actively_check_list_site():                             # todo rethink this 
 def click_next():
     t = time.time()
     pyautogui.scroll(-7000)
-    try_click_image(IMG_NASTEPNA)
+    if pyautogui.locateOnScreen(IMG_NASTEPNA, 5):
+        try_click_image(IMG_NASTEPNA)
+    elif pyautogui.locateOnScreen(IMG_NASTEPNA_2, 5):
+        try_click_image(IMG_NASTEPNA_2)
+    else:
+        click_next()
     print('\t{}s'.format(round(time.time() - t), 0))
 
 
-#
 # def continue_browsing():
 #     actively_check_list_site()
 #     click_next()
