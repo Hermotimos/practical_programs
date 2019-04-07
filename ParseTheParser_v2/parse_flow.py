@@ -18,6 +18,7 @@ def autoparse(pages_to_browse, correction=False, fullscreen=False):
         pages_to_browse -= 1
         print('{}'.format(str(page_cnt)))
 
+        actively_check_list_site()
         click_start()
         switch_to_search_window()
         new_items = click_back_n_times()
