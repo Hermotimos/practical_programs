@@ -27,8 +27,7 @@ def recognize_number(guess=0):
         if guess < 11:
             return recognize_number(guess)
         else:
-            now = datetime.datetime.now()
-            print('{}: Number at position "Nowe" not recognized'.format(now.strftime('%H:%M:%S')))
+            print('{}: Number at position "Nowe" not recognized'.format(datetime.datetime.now().strftime('%H:%M:%S')))
             return 0
 
 
@@ -45,7 +44,7 @@ def try_click_image(image_file, err_cnt=0, clicks=1, interval=0.0):
         try_click_image(image_file, err_cnt, clicks=clicks, interval=interval)
 
 
-def click_image(image, clicks=1, interval=0.0):
+def click_image(image, clicks, interval):
     location = pyautogui.locateOnScreen(image)
     center = pyautogui.center(location)
     pyautogui.click(center[0], center[1], clicks=clicks, interval=interval, duration=0.5)
