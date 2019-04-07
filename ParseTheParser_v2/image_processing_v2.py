@@ -29,44 +29,21 @@ def recognize_number(guess=0):
             return 0
 
 
-def await_image(image_file, seconds=30):
-    isfound = pyautogui.locateOnScreen(image_file, minSearchTime=seconds)
-    if isfound:
-        return True
-    else:
-        return False
-
-
-def try_click_image(image, err_cnt=0, clicks=1, interval=0.0):
-    name = image[6:].split('.')[0]
+def try_click_image(image_file, err_cnt=0, clicks=1, interval=0.0):
+    name = image_file[6:].split('.')[0]
     try:
         if err_cnt == 0:
             print('try: {:15} {:3}'.format(name, err_cnt), end='')
-        click_image(image, clicks=clicks, interval=interval)
+        click_image(image_file, clicks=clicks, interval=interval)
     except TypeError:
         err_cnt += 1
         print('{}try: {:15} {:3}'.format('\b'*25, name, err_cnt), end='')
-        try_click_image(image, err_cnt, clicks=clicks, interval=interval)
+        try_click_image(image_file, err_cnt, clicks=clicks, interval=interval)
 
 
 def click_image(image, clicks=1, interval=0.0):
     location = pyautogui.locateOnScreen(image)
     center = pyautogui.center(location)
-    pyautogui.moveTo(center[0], center[1], duration=0.5)
-    pyautogui.click(clicks=clicks, interval=interval)
+    pyautogui.click(center[0], center[1], clicks=clicks, interval=interval, duration=0.5)
 
 
-# TESTS
-#
-# screen_now = get_screenshot_with_size(465, 51, 474, 73)
-# print(recognize_number(screen_now))
-#
-# # Test of functions get_screenshot_with_size + get_image_data: for recognition of 0 (passed)
-# screenshot = get_screenshot_with_size(465, 51, 474, 73)
-# print(screenshot)
-# print(get_image_data(screenshot))
-# print(get_image_data(screenshot) == NUMBERS_0_10[0])
-
-# screenshot = get_screenshot_with_size(553, 311, 628, 318)
-# print(screenshot)
-# print(get_image_data(screenshot))

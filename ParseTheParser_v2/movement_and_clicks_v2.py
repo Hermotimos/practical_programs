@@ -1,7 +1,7 @@
 import pyautogui
 import datetime
 import time
-from image_processing_v2 import await_image, try_click_image, recognize_number
+from image_processing_v2 import try_click_image, recognize_number
 
 pyautogui.PAUSE = 0.1
 pyautogui.FAILSAFE = True
@@ -26,8 +26,7 @@ IMG_LISTA = '.\\IMG_LISTA.png'
 
 def click_start():
     t = time.time()
-    is_start_black_visible = await_image(IMG_START_BLACK, 30)
-    if is_start_black_visible:
+    if pyautogui.locateOnScreen(IMG_START_BLACK, 30):
         try_click_image(IMG_START_BLACK)
         print('\t{}s'.format(round(time.time() - t), 0))
     else:
@@ -37,8 +36,7 @@ def click_start():
 
 def switch_to_search_window():
     t = time.time()
-    is_start_grey_visible = await_image(IMG_START_GREY, 60)
-    if is_start_grey_visible:
+    if pyautogui.locateOnScreen(IMG_START_GREY, 60):
         try_click_image(IMG_WYSZUKIWARKA)
         print('\t{}s'.format(round(time.time() - t), 0))
     else:
@@ -57,9 +55,7 @@ def click_back_n_times():
 
 def actively_check_list_site():
     t = time.time()
-    is_lista_visible = await_image(IMG_LISTA, 5)
-
-    if is_lista_visible:
+    if pyautogui.locateOnScreen(IMG_LISTA, 15):
         try_click_image(IMG_LISTA)
         print('\t{}s'.format(round(time.time() - t), 0))
     else:
@@ -102,8 +98,7 @@ def correct_settings():
 
     def correct_zteza():
         t = time.time()
-        is_zteza_none = await_image(IMG_ZTEZA, 1)
-        if is_zteza_none:
+        if pyautogui.locateOnScreen(IMG_ZTEZA, 1):
             try_click_image(IMG_ZTEZA)
             pyautogui.move(90, 0)
             pyautogui.click()
@@ -111,8 +106,7 @@ def correct_settings():
 
     def correct_zuzasad():
         t = time.time()
-        is_zuzasad_none = await_image(IMG_ZUZASAD, 1)
-        if is_zuzasad_none:
+        if pyautogui.locateOnScreen(IMG_ZUZASAD, 1):
             try_click_image(IMG_ZUZASAD)
             pyautogui.move(30, 0)
             pyautogui.click()
@@ -120,8 +114,7 @@ def correct_settings():
 
     def correct_rodzaj():
         t = time.time()
-        is_rodzaj_none = await_image(IMG_RODZAJ, 1)
-        if is_rodzaj_none:
+        if pyautogui.locateOnScreen(IMG_RODZAJ, 1):
             try_click_image(IMG_RODZAJ)
             pyautogui.click()
             try_click_image(IMG_WYROK)
