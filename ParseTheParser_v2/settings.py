@@ -1,5 +1,5 @@
 
-def ask_pages():
+def ask_numberof_pages():
     confirm = input('Enter number of pages to browse and confirm by ENTER:\n')
     try:
         confirm = int(confirm)
@@ -7,7 +7,7 @@ def ask_pages():
         return confirm
     except Exception as e:
         print('ERROR:', e)
-        return ask_pages()
+        return ask_numberof_pages()
 
 
 def yes_or_no(prompt):
