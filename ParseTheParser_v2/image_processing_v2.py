@@ -34,11 +34,11 @@ def try_click_image(image_file, err_cnt=0, clicks=1, interval=0.0):
     now = datetime.datetime.now().strftime('%H:%M:%S')
     try:
         if err_cnt == 0:
-            print('[{}] do: {:20} {:3}'.format(now, name, err_cnt), end='')
+            print('[{}] do: {:20} {:5}'.format(now, name, err_cnt), end='')
         click_image(image_file, clicks=clicks, interval=interval)
     except TypeError:
         err_cnt += 1
-        print('{}do: {:20} {:3}'.format('\b'*28, name, err_cnt), end='')
+        print('{}do: {:20} {:3}'.format('\b'*39, name, err_cnt), end='')
         try_click_image(image_file, err_cnt, clicks=clicks, interval=interval)
 
 
