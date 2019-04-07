@@ -1,5 +1,8 @@
+import sys
 import pyautogui
 import datetime
+
+sys.setrecursionlimit(100)
 
 nowe_0 = '.\\images\\nowe_0.png'
 nowe_1 = '.\\images\\nowe_1.png'
