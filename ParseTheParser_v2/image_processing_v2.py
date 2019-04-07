@@ -30,14 +30,15 @@ def recognize_number(guess=0):
 
 
 def try_click_image(image_file, err_cnt=0, clicks=1, interval=0.0):
-    name = image_file[6:].split('.')[0]
+    name = image_file[9:].split('.')[0]
+    now = datetime.datetime.now().strftime('%H:%M:%S')
     try:
         if err_cnt == 0:
-            print('try: {:15} {:3}'.format(name, err_cnt), end='')
+            print('[{}] do: {:20} {:3}'.format(now, name, err_cnt), end='')
         click_image(image_file, clicks=clicks, interval=interval)
     except TypeError:
         err_cnt += 1
-        print('{}try: {:15} {:3}'.format('\b'*25, name, err_cnt), end='')
+        print('{}do: {:20} {:3}'.format('\b'*28, name, err_cnt), end='')
         try_click_image(image_file, err_cnt, clicks=clicks, interval=interval)
 
 
