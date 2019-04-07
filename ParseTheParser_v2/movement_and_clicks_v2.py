@@ -24,13 +24,26 @@ IMG_BACK = '.\\IMG_BACK.png'
 IMG_LISTA = '.\\IMG_LISTA.png'
 
 
+def scrolldown_startpage():
+    t = time.time()
+    try_click_image(IMG_STATUS)
+    pyautogui.scroll(-7000)
+    print('\t{}s'.format(round(time.time() - t), 0))
+
+
+def click_search():
+    t = time.time()
+    try_click_image(IMG_SZUKAJ)
+    print('\t{}s'.format(round(time.time() - t), 0))
+
+
 def click_start():
     t = time.time()
     if pyautogui.locateOnScreen(IMG_START_BLACK, 30):
         try_click_image(IMG_START_BLACK)
         print('\t{}s'.format(round(time.time() - t), 0))
     else:
-        click_next()
+        try_click_image(IMG_BACK)
         click_start()
 
 
@@ -53,18 +66,27 @@ def click_back_n_times():
     return new
 
 
-def actively_check_list_site():
+def actively_check_list_site():                             # todo rethink this one
     t = time.time()
     if pyautogui.locateOnScreen(IMG_LISTA, 15):
         try_click_image(IMG_LISTA)
         print('\t{}s'.format(round(time.time() - t), 0))
     else:
-        try_click_image(IMG_BACK)
-        actively_check_list_site()
+        pyautogui.locateOnScreen(IMG_BACK)
+        pyautogui.move(0, 30)
+        pyautogui.scroll(7000)
+        if pyautogui.locateOnScreen(IMG_LISTA, 15):
+            try_click_image(IMG_LISTA)
+            print('\t{}s'.format(round(time.time() - t), 0))
+        else:
+            try_click_image(IMG_BACK)
+            actively_check_list_site()
 
 
 def click_next():
     t = time.time()
+    try_click_image(IMG_WYSZUKIWARKA)
+    pyautogui.move(0, 100)
     pyautogui.scroll(-7000)
     try_click_image(IMG_NASTEPNA)
     print('\t{}s'.format(round(time.time() - t), 0))

@@ -32,18 +32,6 @@ def autoparse(pages_to_browse, correction=False, fullscreen=False):
 
 
 def start_browsing():
-
-    def scrollbar_down():
-        t = time.time()
-        try_click_image(IMG_STATUS)
-        pyautogui.scroll(-7000)
-        print('\t{}s'.format(round(time.time() - t), 0))
-
-    def click_search():
-        t = time.time()
-        try_click_image(IMG_SZUKAJ)
-        print('\t{}s'.format(round(time.time() - t), 0))
-
-    scrollbar_down()
+    scrolldown_startpage()
     click_search()
     print()
