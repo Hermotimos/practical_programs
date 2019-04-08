@@ -28,6 +28,7 @@ def determine_startpoint():
     elif pyautogui.locateOnScreen(IMG_LISTA, 1):
         return False
     else:
+        pyautogui.scroll(7000)
         determine_startpoint()
 
 
