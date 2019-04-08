@@ -1,17 +1,18 @@
-import os
 import datetime
-from movement_and_clicks_v2 import click_next
+import time
 
 
 def call_and_report(called_function):
+    start = time.time()
     print('[{}] '.format(datetime.datetime.now().strftime('%H:%M:%S')), end='')
-    print(called_function.__repr__().split()[1])
-    called_function()
+    print('{:25}'.format(called_function.__repr__().split()[1]), end='')
+    
+    anyreturn = called_function()
+    back_n_times = ''
+    if called_function.__repr__().split()[1] == 'click_back_n_times':
+        back_n_times = str(1 + anyreturn) + 'x'
 
-# it works, but causes problems if called function calls other functions
-# but maybe only because the ones called stll have older reporting from within...
+    print('{:3}\t{}s\t'.format(back_n_times, round(time.time() - start)), end='')
+    print('[{}] '.format(datetime.datetime.now().strftime('%H:%M:%S')))
 
-
-call_and_report(click_next)
-
-
+    return anyreturn

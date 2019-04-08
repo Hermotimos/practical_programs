@@ -32,26 +32,20 @@ def determine_startpoint():
 
 
 def scrolldown_startpage():
-    t = time.time()
     try_click_image(IMG_STATUS)
     pyautogui.scroll(-7000)
-    print('\t{}s'.format(round(time.time() - t), 0))
 
 
 def click_search():
-    t = time.time()
     try_click_image(IMG_SZUKAJ)
-    print('\t{}s'.format(round(time.time() - t), 0))
 
 
 def set_strony():
-    t = time.time()
     try_click_image(IMG_NROSTAT)
     pyautogui.move(0, 20)
     pyautogui.click()
     pyautogui.press('delete', presses=5)
     pyautogui.typewrite('1')
-    print('\t{}s'.format(round(time.time() - t), 0))
 
 
 # ELEMENTS of browse_pages()
@@ -64,20 +58,16 @@ def await_blueline():
 
 
 def click_start():
-    t = time.time()
     if pyautogui.locateOnScreen(IMG_START_BLACK, 30):
         try_click_image(IMG_START_BLACK)
-        print('\t{}s'.format(round(time.time() - t), 0))
     else:
         try_click_image(IMG_BACK)
         click_start()
 
 
 def switch_to_search_window():
-    t = time.time()
     if pyautogui.locateOnScreen(IMG_START_GREY, 60):
         try_click_image(IMG_WYSZUKIWARKA)
-        print('\t{}s'.format(round(time.time() - t), 0))
     elif pyautogui.locateOnScreen(IMG_WYSZUKIWARKA_2, 1):
         pass
     else:
@@ -85,34 +75,27 @@ def switch_to_search_window():
 
 
 def click_back_n_times():
-    t = time.time()
     new = recognize_number()
     n_times = new + 1
-    print('back x{}'.format(n_times))
     try_click_image(IMG_BACK, clicks=n_times, interval=0.5)
-    print('\t{}s'.format(round(time.time() - t), 0))
     return new
 
 
 def actively_check_list_site():                             # todo rethink this one
-    t = time.time()
     if pyautogui.locateOnScreen(IMG_LISTA, 15):
         try_click_image(IMG_LISTA)
-        print('\t{}s'.format(round(time.time() - t), 0))
     else:
         pyautogui.locateOnScreen(IMG_BACK)
         pyautogui.move(0, 30)
         pyautogui.scroll(7000)
         if pyautogui.locateOnScreen(IMG_LISTA, 15):
             try_click_image(IMG_LISTA)
-            print('\t{}s'.format(round(time.time() - t), 0))
         else:
             try_click_image(IMG_BACK)
             actively_check_list_site()
 
 
 def click_next():
-    t = time.time()
     pyautogui.scroll(-7000)
     if pyautogui.locateOnScreen(IMG_NASTEPNA, 2):
         try_click_image(IMG_NASTEPNA)
@@ -120,13 +103,3 @@ def click_next():
         try_click_image(IMG_NASTEPNA_2)
     else:
         click_next()
-    print('\t{}s'.format(round(time.time() - t), 0))
-
-
-# def continue_browsing():
-#     actively_check_list_site()
-#     click_next()
-#
-#
-# def do_fullscreen():
-#     pass        # todo
